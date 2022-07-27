@@ -1,0 +1,151 @@
+/* pages/home/home.wxss */
+#body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+swiper {
+   width: 100%;
+   height: 400rpx;
+}
+.item {
+  height: 100%;
+  line-height: 100%;
+  text-align: center;
+}
+swiper-item:nth-child(1) .item{
+  background-color: lightcoral;
+}
+swiper-item:nth-child(2) .item{
+  background-color: lightcyan;
+}
+swiper-item:nth-child(3) .item{
+  background-color: lightgreen;
+}
+.itemImage1 {
+  display: block;
+  height: 100%;
+  line-height: 100%;
+}
+.searchBody {
+  margin: 25rpx 0 -4rpx 0;
+}
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex: 1;
+}
+.left {
+  display: flex;
+  justify-content: c;
+}
+.right {
+  width: 80%;
+  background-color: whitesmoke;
+  height: 1130rpx;
+  overflow: scroll;
+}
+.right_content {
+  position: relative;
+  width: 100%;
+  height: 190rpx;
+}
+.card {
+  background-color: white !important;
+}
+.button {
+  position: absolute;
+  right: 70rpx;
+  bottom: 20rpx;
+  width: 100rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 26rpx;
+  background-color: red;
+  text-align: center;
+  color: white;
+}
+.popup {
+  width: 600rpx;
+  height: 1040rpx;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  border-radius: 30rpx;
+}
+.name {
+  margin: 0 10rpx;
+}
+.describe {
+  flex: 1;
+}
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  background-color: skyblue;
+}
+.bottom_left{
+  display: flex;
+  justify-content: flex-start;
+  padding: 10rpx 5rpx;
+}
+.bottom_button_left{
+  width: 60rpx;
+  height: 50rpx;
+  background-color: rgb(227, 229, 231);
+  text-align: center;
+  margin: 20rpx 0rpx 10rpx 15rpx;
+  line-height: 50rpx;
+}
+.bottom_button_right{
+  width: 60rpx;
+  height: 50rpx;
+  background-color: rgb(227, 229, 231);
+  text-align: center;
+  margin: 20rpx 15rpx 10rpx 0rpx;
+  line-height: 50rpx;
+}
+.bottom_text{
+  margin: 20rpx 0rpx 10rpx;
+  height: 50rpx;
+  width: 60rpx;
+  text-align: center;
+  line-height: 50rpx;
+  background-color:ghostwhite;
+}
+.price {
+  display: flex;
+  margin: 30rpx 0rpx 10rpx;
+  justify-content: flex-end;
+  margin-right: 10rpx;
+  height: 50rpx;
+  color: red;
+  line-height: 50rpx;
+  font-size: 34rpx;
+}
+
+.AddToCart {
+  height: 40rpx;
+  padding: 30rpx 30rpx;
+  background-color: red;
+  color: white;
+}
+
+
+.menuButtonHeight .picker {
+  display: flex;
+  justify-content:start;
+  width: 100%;
+}
+
+.selectRegion{
+  width: 100%;
+  vertical-align: top;
+}
+.optionRegion {
+  vertical-align: top;
+}
+.header {
+  text-align: center;
+}

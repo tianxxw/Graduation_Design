@@ -1,0 +1,53 @@
+<view class="conTainer">
+  <view class="conTainerHeader">
+    <view class="conTainerLeft">
+        <view class="getLocation">
+           <image src="../../static/navigator.png"></image>
+           <view>获得详细地理位置></view>
+        </view>
+    </view>
+    <view class="conTainerRight">
+        <view class="search">
+            <input type="text" placeholder="请输入搜索内容"/>
+        </view>
+    </view>
+  </view>
+</view>
+<!-- 分类 -->
+<van-dropdown-menu>
+  <van-dropdown-item value="{{ value0 }}" options="{{ option0 }}" id="selectChildren"/>
+  <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" id="selectChildren"/>
+  <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" id="selectChildren"/>
+</van-dropdown-menu>
+<view class="dataZs">
+     <view class="dataCt" wx:for="{{info}}" wx:key="item">
+       <view class="dataCtHeader"> 
+        <image src="{{item.user.avatarUrl}}" class="avatar"></image>
+        <view class="Header">
+            <view class="HeaderLeft">
+                <view class="nickname">{{item.user.nickName}}</view>
+                <view wx:if="{{item.releaseBang.online}}" class="online">线上</view>
+                <view wx:if="{{item.releaseBang.offline}}" class="offline">线下</view>
+            </view>
+            <view class="releaseDataTime">{{item.releaseBang.releaseDataTime}}</view>
+        </view>
+        <view class="money">¥{{item.releaseBang.money}}</view>
+       </view>
+       <view class="text">
+        <view class="textContainer">{{item.releaseBang.textareaContainer}}</view>
+        <view class="textImage">
+          <image wx:for="{{item.releaseBang.bangImageList}}" wx:for-index="idxx" wx:for-item="itemName" wx:key="idxx" src="http://119.29.141.196/downloadImage/{{itemName.fileName}}" class="textImageContainer"></image>
+        </view>
+       </view>
+       <view class="bottom">
+          <view class="bottomContainer"> 
+            <view class="termDateTime">{{item.releaseBang.termDateTime}}</view>
+            <view class="distance"></view>
+            <view class="button">
+                <view>联系TA</view>
+                <view>下单</view>
+            </view>
+          </view>
+       </view>
+     </view>
+</view>

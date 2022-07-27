@@ -1,0 +1,80 @@
+<view id="body">
+<view class="navTop" id="nav1Top" style="height: {{nav.navTop}}px"></view>
+<view class="menuButtonHeight" style="height: {{nav.navObj}}px; line-height: {{nav.navObj}}px;">
+    <view class="picker">
+      <image src="/static/navigator.png" style="height: {{nav.navObj}}px;width: {{nav.navObj}}px;line-height: {{nav.navObj}}px;"></image>
+      <text class="selectRegion">{{region.province ? region.province: province}} {{region.city}}</text>
+    </view>
+</view>
+<view style="height: 8px;"></view>
+<!-- <my-test1 nav1="{{nav}}" regions="{{region}}" xk="{{checkout}}"></my-test1> -->
+<swiper indicator-dots="true" interval="3000" duration="500" circular="true" autoplay="true">
+   <swiper-item><view class="item"><image src="../../static/lbt1.png" class="itemImage1" mode="heightFix"></image></view></swiper-item>
+   <swiper-item><view class="item"></view></swiper-item>
+   <swiper-item><view class="item"></view></swiper-item>
+</swiper>
+<view class="searchBody">  
+<van-search
+  value="{{ value }}"
+  input-align="center"
+  placeholder="点此搜索商品"
+  bind:search="onSearch"
+  bind:cancel="onCancel"
+  bindtap="gotoSearch"
+/>
+</view>
+
+<view class="content">
+  <van-sidebar active-key="{{ activeKey }}" class="left" bind:change="onChange">
+    <van-sidebar-item title="热销商品" />
+    <van-sidebar-item title="限时优惠" />
+    <van-sidebar-item title="原味鲜奶" />
+  </van-sidebar>
+  <van-notify id="van-notify" />
+  <view class="right" wx:if="{{activeKey == 0}}">
+    <view class="right_content" wx:for="{{goodsList}}" wx:key="{{commodity_id}}">
+      <van-card
+      tag="热门"
+      price="{{item.commodity_price}}"
+      desc="描述信息"
+      title="{{item.commodity_name}}"
+      thumb="{{item.commodity_imgurl}}"
+      lazy-load="true"
+      bindtap="getDD"
+      commodity = "{{item.commodity_id}}"
+      class="card"
+      bindtap="showPopup"
+      data-id="{{item.commodity_id}}"
+       > 
+    </van-card>
+    <view class="button" bindtap="showPopup"
+      data-id="{{item.commodity_id}}">
+      选规格
+    </view>
+    <van-popup show="{{ show }}" bind:close="onClose" data-id="{{item.commodity_id}}" overlay-style="background-color: rgba(1,1,1,0.1)" lock-scroll="true">
+     <view class="popup">
+      <van-image width="100%" height="600rpx" fit="contain" src="{{good.commodity_imgurl}}" />
+       <view class="name">{{good.commodity_name}}</view>
+       <view class="describe"></view>
+       <view class="bottom">
+          <view class="bottom_left">
+          <view class="bottom_button_left" bindtap="NumReduce" data-price="{{good.commodity_price}}">+</view>
+          <input type="number" value="{{num}}" class="bottom_text" confirm-type="done" bindinput="input" bindconfirm="confirm" data-price="{{good.commodity_price}}" maxlength="2"/>
+          <view class="bottom_button_right" bindtap="NumAdd" data-price="{{good.commodity_price}}">+</view>
+          </view>
+          <view class="price">¥{{price}}</view>
+          <view class="AddToCart" bindtap="AddToCart" data-price="{{good.commodity_price}}">添加到购物车</view>
+       </view>
+     </view>
+    </van-popup>
+    </view>
+</view>
+
+<view class="right" wx:elif="{{activeKey == 1}}">
+</view>
+<view class="right" wx:elif="{{activeKey == 2}}">
+</view>
+
+</view>
+</view>
+

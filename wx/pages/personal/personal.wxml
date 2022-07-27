@@ -1,0 +1,36 @@
+<view class="myself">
+  <view class="myselfHeader" bindtap="getLogin">
+  <view class="myselfHeaderSon">
+    <view class="myselfInfo">
+      <view class="myAvatar">
+        <van-image round width="160rpx" height="160rpx" src="{{userInfo.avatar}}" class="avatarImage"/>
+      </view>
+      <view class="myNickname">
+          <view class="userInfoNickName">{{userInfo.name}}</view>
+      </view>
+      </view>
+       </view>
+    </view>
+    <view class="mySeekHelp">
+      <view class="mySeekHelpSon">
+        <view class="myHelpTitle"><text>我的订单</text><text class="myHelpTitleRightText">全部订单></text>
+        </view>
+          <view class="myHelpContent">
+            <view wx:for="{{myHelp}}" wx:key="id" class="myHelpContentSon">
+            <view class="myhelpHeader"><image src="{{item.avatarUrl}}Blue.png" widthFix="true"></image>
+            <view class="myhelpBottom">{{item.title}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="otherOptions">
+      <view class="otherOptionsContainer">
+        <view>个人信息</view>
+        <view>我的客服</view>
+        <view>设置</view>
+        <view>一键反馈</view>
+        <view>用户协议</view>
+      </view>
+    </view>
+</view>

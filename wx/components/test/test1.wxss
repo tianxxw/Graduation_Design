@@ -1,0 +1,18 @@
+/* components/test/test1.wxss */
+
+.menuButtonHeight .picker {
+  display: flex;
+  justify-content:start;
+  width: 100%;
+}
+
+.selectRegion{
+  width: 100%;
+  vertical-align: top;
+}
+.optionRegion {
+  vertical-align: top;
+}
+.header {
+  text-align: center;
+}

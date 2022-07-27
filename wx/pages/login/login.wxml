@@ -1,0 +1,3 @@
+<!--pages/login/login.wxml-->
+<text>pages/login/login.wxml</text>
+<button open-type="getPhoneNumber" type="primary" bindtap="getLogin">微信用户一键登录</button>

@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-image": "@vant/weapp/image/index",
+    "van-stepper": "@vant/weapp/stepper/index",
+    "van-submit-bar": "@vant/weapp/submit-bar/index",
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-cell": "@vant/weapp/cell/index"
+  }
+}

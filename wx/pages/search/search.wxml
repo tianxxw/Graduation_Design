@@ -1,0 +1,29 @@
+<!--pages/search/search.wxml-->
+<view class="body">
+  <view class="body_header">
+    <view class="header">
+  <view class="search" bindtap="gotoSearch">
+    <view class="search-container">
+      <view class="input">
+        <image class="search-before" src="/static/sarch.png"></image>
+        <input class="searchInput" auto-focus placeholder="取快递" focus="true"/>
+      </view>
+    </view> 
+  </view>
+  <view class="searchButton">搜索</view>
+</view>
+</view>
+
+<view class="rmContent">
+  <view class="rmSearch">
+   <text>热门搜索</text>
+ </view>
+</view>
+<view class="contMain">
+  <view class="contBody">
+    <view wx:for="{{list}}" wx:key="id">
+      {{item.username}}
+  </view>
+  </view>
+</view>
+</view>

@@ -1,0 +1,4 @@
+<!--pages/message/message.wxml-->
+<text>pages/message/message.wxml</text>
+<button bindtap="getSage">获取本地缓存</button>
+<view class="btn" catchtap="toShowAddress"></view>

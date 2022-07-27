@@ -1,0 +1,9 @@
+<view class="navTop" id="nav1Top" style="height: {{nav1.navTop}}px"></view>
+<view class="menuButtonHeight" style="height: {{nav1.navObj}}px; line-height: {{nav1.navObj}}px;">
+    <view class="picker">
+      <image src="/static/navigator.png" style="height: {{nav1.navObj}}px;width: {{nav1.navObj}}px;line-height: {{nav1.navObj}}px;"></image>
+      <text class="selectRegion">{{regions.province ? regions.province: province}} {{regions.city}}</text>
+      <text wx:for="{{region}}" wx:key="index" class="optionRegion">{{item}} </text>
+    </view>
+</view>
+<view style="height: 8px;"></view>

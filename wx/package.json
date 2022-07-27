@@ -1,0 +1,18 @@
+{
+  "name": "lebang",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vant/weapp": "^1.3.3"
+  },
+  "devDependencies": {
+    "miniprogram-api-typings": "^3.5.0"
+  }
+}

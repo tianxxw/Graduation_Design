@@ -1,0 +1,67 @@
+/* pages/shop/shop.wxss */
+#id {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.right_content {
+  color: black;
+  width: 100%;
+  flex: 1;
+  height: 100%;
+  background-color: whitesmoke;
+}
+.card {
+  width: 100%;
+  padding: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  border-bottom: 1px solid gainsboro;
+}
+.image{
+  width: 23%;
+  height: 150rpx;
+}
+.text {
+  width: 77%;
+}
+image {
+  width: 100%;
+}
+.t1 {
+  height: 87%;
+}
+.t2{
+  height: 13%;
+  display: flex;
+  justify-content: flex-end;
+}
+.t21 {
+  color: red;
+  font-size: 32rpx;
+  line-height: 16rpx;
+  margin-right: 40rpx;
+}
+.t22 {
+  margin-top: -20rpx;
+}
+.sapn{
+ color: red;   
+}
+.header {
+  height: 100rpx;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px solid gainsboro;
+}
+.h1 {
+  margin: 20rpx 30rpx;
+}
+.h2{
+  margin: 20rpx 30rpx;
+  width: 200rpx;
+  display: flex;
+  justify-content: space-between;
+}

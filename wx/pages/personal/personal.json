@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "van-image": "@vant/weapp/image/index"
+  },
+  "backgroundTextStyle":"dark",
+  "navigationBarBackgroundColor": "#E3F3FD",
+  "navigationBarTitleText": "我的",
+  "navigationBarTextStyle":"black",
+  "enablePullDownRefresh": false,
+  "onReachBottomDistance": 50,
+  "backgroundColor": "#E3F3FD"
+}

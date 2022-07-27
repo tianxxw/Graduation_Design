@@ -1,0 +1,41 @@
+<view id="body">
+  <view class="header">
+    <view wx:if="{{load1}}" class="h1" bindtap="check1">管理</view>
+    <view wx:else class="h2">
+      <checkbox></checkbox>
+      <view>批量删除</view>
+      <view bindtap="check1" bindtap="check2">完成</view>
+    </view>
+  </view>
+<!-- -------------------------------------------------------------------------------------------------------- -->
+<view class="right_content" wx:for="{{goodsList}}" wx:key ="{{commodity_id}}">
+  <van-swipe-cell
+    id="swipe-cell"
+    right-width="{{ 65 }}"
+    left-width="{{ 65 }}"
+    async-close
+    bind:close="onClose"
+  >
+  <view slot="left">选择</view>
+  <van-cell-group>
+    <view>冲</view>
+    <van-image 
+      width="200rpx"
+      height="200rpx"
+      fit="contain"
+      src="{{item.commodity_imgurl}}"
+    />
+  </van-cell-group>
+  <view slot="right">删除</view>
+</van-swipe-cell>
+</view>
+
+<!-- -------------------------------------------------------------------------------------------------------- -->
+<van-submit-bar
+  price="{{ 3050 }}"
+  button-text="提交订单"
+  bind:submit="onSubmit"
+/>
+</view>
+
+

@@ -1,0 +1,22 @@
+/* pages/askforhelp/askforhelp.wxss */
+.conTainer{
+  background-color: lightgreen;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+.conTainerHeader {
+  width: 95%;
+  height: 70rpx;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.conTainerHeader .conTainerLeft{
+  background-color: lightseagreen;
+  height: 70rpx;
+}
+.conTainerHeader .conTainerRight{
+  background-color:  lightsalmon;
+  height: 70rpx;
+}

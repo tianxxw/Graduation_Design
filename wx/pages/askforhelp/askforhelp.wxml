@@ -1,0 +1,13 @@
+<!--pages/askforhelp/askforhelp.wxml-->
+<view class="conTainer">
+  <view class="conTainerHeader">
+    <view class="conTainerLeft">
+        <view class="">
+           
+        </view>
+    </view>
+    <view class="conTainerRight">
+        <view></view>
+    </view>
+  </view>
+</view>

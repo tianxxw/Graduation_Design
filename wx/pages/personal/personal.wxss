@@ -1,0 +1,250 @@
+/* pages/personal/personal.wxss *//**index.wxss**/
+html,body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  width: 100%;
+  background-color: whitesmoke;
+}
+.myself{
+  width: 100%;
+  height: 100vh;
+  background-color: whitesmoke;
+}
+.myselfHeader{
+  width: 100%;
+  height: 180rpx;
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(#E3F3FD 40%, white);
+}
+.myselfHeaderSon {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.myselfHeader .myselfHeaderSon .myselfInfo{
+  width: 100%;
+  height: 180rpx;
+  display: flex;
+  justify-content: center;
+}
+.creditScore {
+  width: 30%;
+  height: 180rpx;
+}
+.creditScore .creditScoreContent {
+  margin-top: 20rpx;
+  height: 100rpx;
+  width: 100rpx;
+  position: relative;
+}
+.creditScore .creditScoreContent image{
+  width: 160rpx;
+  height: 142rpx;
+}
+.creditScore .creditScoreContent view{
+  position: absolute;
+  width: 70rpx;
+  height: 40rpx;
+  left: 45rpx;
+  top: 120rpx;
+  color: blue;
+  text-align: center;
+}
+.creditScore .creditScoreContent .creditScoreImg2{
+   width: 130rpx;
+   height: 130rpx;
+   position: absolute;
+   left: 15rpx;
+   top: 15rpx;
+   transition: all 0.5s;
+}
+.myAvatar {
+  width: 35%;
+  height: 180rpx;
+}
+.myNickname {
+  width: 75%;
+  height: 180rpx;
+}
+.avatarImage {
+  display: block;
+  margin-top: 10rpx;
+}
+.userInfoNickName {
+   height: 180rpx;
+   line-height: 130rpx;
+   font-size: 40rpx;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow:ellipsis;
+}
+.userInfo1,.userInfo2 {
+  height: 30rpx;
+  line-height: 30rpx;
+  font-size: 24rpx;
+  display: flex;
+}
+.userInfo2 {
+  margin-top: 10rpx;
+}
+.userInfo1 .userInfo1Icon {
+  height: 30rpx;
+  width: 30%;
+  line-height: 30rpx;
+  color: white;
+  display: flex;
+  background-color: rgb(123, 159, 232);
+  border-radius: 3rpx;
+}
+.userInfo2 .userInfo2Icon {
+  height: 30rpx;
+  width: 30%;
+  line-height: 30rpx;
+  color: white;
+  display: flex;
+  background-color: rgb(232, 203, 123);
+  border-radius: 3rpx;
+}
+.userInfo1 .userInfo1Icon image,.userInfo2 .userInfo2Icon image {
+  height: 30rpx;
+  width: 30rpx;
+  margin-left: 8rpx;
+}
+.userInfoText {
+  margin-left: 20rpx;
+  font-size: 24rpx;
+  line-height: 30rpx;
+}
+.myselfCard {
+  width: 100%;
+  height: 140rpx;
+  background-color: white;
+}
+.myselfCard .myselfCardSon {
+  width: 95%;
+  margin: 0 auto;
+  height: 140rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.myselfCard .myselfCardSon .card{
+  width: 22%;
+  margin-top: 20rpx;
+  height: 100rpx;
+  background: linear-gradient(#DDE8F9,#C2E9FB);
+  border-radius: 20rpx;
+}
+.cardHeader {
+  height: 40rpx;
+  font-size: 22rpx;
+  text-align: center;
+  line-height: 40rpx;
+}
+.cardBottom {
+  height: 60rpx;
+  font-size: 30rpx;
+  text-align: center;
+  line-height: 60rpx;
+}
+.myHelpTitle {
+  margin: 0 auto;
+  width: 95%;
+}
+.myHelp {
+  width: 100%;
+  height: 240rpx;
+  background-color: whitesmoke;
+  overflow: hidden;
+}
+.myHelpSon{
+  width: 95%;
+  margin: 20rpx auto 0rpx;
+  height: 210rpx;
+  background-color: white;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+.myHelpTitle {
+  width: 95%;
+  font-size: 26rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  margin: 10rpx auto;
+}
+.myHelpTitleRightText {
+  float: right;
+  font-size: 18rpx;
+}
+.myHelpContent {
+  width: 100%;
+  margin-top: 10rpx;
+  height: 150rpx;
+  display: flex;
+  justify-content: space-around;
+}
+.myHelpContent .myHelpContentSon {
+  width: 13%;
+}
+.myHelpContent .myhelpHeader {
+  margin-top: 10rpx;
+  width: 100%;
+  height:160rpx;
+  overflow: hidden;
+}
+.myHelpContent .myhelpHeader image{
+  display: block;
+  width: 80rpx;
+  height: 80rpx;
+  margin: 0 auto;
+}
+.myHelpContent .myhelpBottom{
+  width: 100%;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 20rpx;
+  margin-top: 10rpx;
+  text-align: center;
+}
+.mySeekHelp {
+  width: 100%;
+  height: 240rpx;
+  background-color: whitesmoke;
+  overflow: hidden;
+}
+.mySeekHelpSon{
+  width: 95%;
+  margin: 20rpx auto 0rpx;
+  height: 210rpx;
+  background-color: white;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+.otherOptions{
+  padding-top: 10rpx;
+  width: 100%;
+  height: 400rpx;
+  background-color: whitesmoke;
+  overflow: hidden;
+}
+.otherOptionsContainer {
+  width: 95%;
+  margin: 0 auto;
+}
+.otherOptionsContainer view {
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 25rpx;
+  margin-top: 10rpx;
+  padding-left: 10rpx;
+  background-color: white;
+  border-radius: 10rpx;
+}
+
+
+
+
+

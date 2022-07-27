@@ -1,0 +1,52 @@
+{
+  "pages":[
+    "pages/home/home",
+    "pages/shop/shop",
+    "pages/personal/personal",
+    "pages/info/info",
+    "pages/rank/rank",
+    "pages/search/search",
+    "pages/askforhelp/askforhelp",
+    "pages/login/login"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "轻晨饮品",
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh": false,
+    "onReachBottomDistance": 20
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "my-test1":"/components/test/test1"
+  },
+  "tabBar": {
+    "list": [
+    {
+      "pagePath": "pages/home/home",
+      "text": "首页",
+      "iconPath": "/static/tab_icons/home.png",
+      "selectedIconPath": "/static/tab_icons/home-active.png"
+    },
+    {
+      "pagePath": "pages/shop/shop",
+      "text": "购物车",
+      "iconPath": "/static/tab_icons/shop.png",
+      "selectedIconPath": "/static/tab_icons/shop-active.png"
+    },
+    {
+      "pagePath": "pages/personal/personal",
+      "text": "我的",
+      "iconPath": "/static/tab_icons/one.png",
+      "selectedIconPath": "/static/tab_icons/one-active.png"
+    }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示" 
+    }
+  },
+  "lazyCodeLoading": "requiredComponents"
+}
