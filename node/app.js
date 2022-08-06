@@ -41,9 +41,9 @@ app.use((req, res, next) => {
 // }.unless({
 //     path:[/^\/login\//]
 // })))
-app.use('/login', userRouter)
-app.use('/api', goods)
-app.use('/api', shops)
+// app.use('/login', userRouter)
+// app.use('/api', goods)
+// app.use('/api', shops)
 app.use((err, req, res, next) => {
         if (err instanceof joi.ValidationError) {
             return res.cc(err)
@@ -58,7 +58,9 @@ app.use((err, req, res, next) => {
             // 未知错误
     })
     //定义错误级别的中间件
-
+    app.use('/login', userRouter)
+    app.use('/api', goods)
+    app.use('/api', shops)
 app.listen(3007, () => {
         console.log('api server running at http://127.0.0.1:3007')
     })

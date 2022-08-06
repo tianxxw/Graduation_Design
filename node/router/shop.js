@@ -5,5 +5,6 @@ const router = express.Router()
 const userShop = require('../router_headler/shop')
 router.post('/shop1',userShop.shop1)
 router.get('/shop2',userShop.shop2)
-
+router.post('/shop3',userShop.shop3)
+router.post('/deleteShopGoods',userShop.deleteShopGoods)
 module.exports = router

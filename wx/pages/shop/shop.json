@@ -5,6 +5,8 @@
     "van-submit-bar": "@vant/weapp/submit-bar/index",
     "van-swipe-cell": "@vant/weapp/swipe-cell/index",
     "van-cell-group": "@vant/weapp/cell-group/index",
-    "van-cell": "@vant/weapp/cell/index"
+    "van-cell": "@vant/weapp/cell/index",
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-checkbox-group": "@vant/weapp/checkbox-group/index"
   }
 }

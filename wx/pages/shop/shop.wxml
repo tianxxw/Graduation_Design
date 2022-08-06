@@ -1,41 +1,48 @@
 <view id="body">
   <view class="header">
+    <van-checkbox value="{{ checkedAll }}" bind:change="onChangeAll" class="h0">全选</van-checkbox>
     <view wx:if="{{load1}}" class="h1" bindtap="check1">管理</view>
     <view wx:else class="h2">
-      <checkbox></checkbox>
-      <view>批量删除</view>
-      <view bindtap="check1" bindtap="check2">完成</view>
+      <view class="h1_right">
+        <view>批量删除</view>
+        <view bindtap="check2" class="complete">完成</view>
+      </view>
     </view>
   </view>
 <!-- -------------------------------------------------------------------------------------------------------- -->
 <view class="right_content" wx:for="{{goodsList}}" wx:key ="{{commodity_id}}">
-  <van-swipe-cell
-    id="swipe-cell"
-    right-width="{{ 65 }}"
-    left-width="{{ 65 }}"
-    async-close
-    bind:close="onClose"
-  >
-  <view slot="left">选择</view>
-  <van-cell-group>
-    <view>冲</view>
-    <van-image 
-      width="200rpx"
-      height="200rpx"
-      fit="contain"
+<van-checkbox-group value="{{ result }}" bind:change="onChange"  class="checkobox-group" bindtap="onClick" data-id="{{item}}">
+  <van-checkbox name="{{item.commodity_id}}" class="">
+    <view class="right_content_content">
+      <van-image
+      width="100"
+      height="100"
       src="{{item.commodity_imgurl}}"
+      class="left"
     />
-  </van-cell-group>
-  <view slot="right">删除</view>
-</van-swipe-cell>
+    <view class="right">  
+      <view class="name">{{item.commodity_name}}</view>
+      <view class="right_right">
+        <view class="price">¥ {{item.commodity_price}}</view>
+      </view>
+    </view>
+    </view>
+  </van-checkbox>
+  <van-stepper value="{{item.number}}" integer="true" max="99" min="1" long-press="{{ false }}" class="strpper" bind:plus="onPlus" bind:minus="onMinus" data-number="{{item}}" name="{{item.commodity_id}}" />
+</van-checkbox-group>
 </view>
 
 <!-- -------------------------------------------------------------------------------------------------------- -->
+<view class="bottom">
 <van-submit-bar
-  price="{{ 3050 }}"
+  price="{{ price }}"
   button-text="提交订单"
   bind:submit="onSubmit"
+  bar-class="submit"
+  custom-class="submit"
 />
+</view>
+
 </view>
 
 

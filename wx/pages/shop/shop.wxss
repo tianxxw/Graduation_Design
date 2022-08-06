@@ -1,67 +1,90 @@
 /* pages/shop/shop.wxss */
-#id {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-.right_content {
-  color: black;
-  width: 100%;
-  flex: 1;
-  height: 100%;
-  background-color: whitesmoke;
-}
-.card {
-  width: 100%;
-  padding: 20rpx;
-  display: flex;
-  justify-content: space-between;
-  background-color: white;
-  border-bottom: 1px solid gainsboro;
-}
-.image{
-  width: 23%;
-  height: 150rpx;
-}
-.text {
-  width: 77%;
-}
-image {
-  width: 100%;
-}
-.t1 {
-  height: 87%;
-}
-.t2{
-  height: 13%;
-  display: flex;
-  justify-content: flex-end;
-}
-.t21 {
-  color: red;
-  font-size: 32rpx;
-  line-height: 16rpx;
-  margin-right: 40rpx;
-}
-.t22 {
-  margin-top: -20rpx;
-}
-.sapn{
- color: red;   
-}
 .header {
   height: 100rpx;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   border-bottom: 1px solid gainsboro;
 }
+.h0 {
+  margin: 50rpx 30rpx 20rpx 12rpx;
+  width: 50%;
+}
 .h1 {
-  margin: 20rpx 30rpx;
+  width: 50%;
+  margin: 50rpx 30rpx 20rpx;
+  text-align: right;
 }
 .h2{
-  margin: 20rpx 30rpx;
-  width: 200rpx;
+  margin: 50rpx 30rpx 20rpx;
+  width: 98%;
   display: flex;
   justify-content: space-between;
+}
+.h1_left{
+  width: 55%;
+}
+.h1_right{
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+.complete {
+  margin-left: 30rpx;
+}
+.right_content {
+  position: relative;
+  border-radius: 5rpx;
+  color: black;
+  margin: 6rpx auto 0rpx;
+  width: 98%;
+  flex: 1;
+  height: 100%;
+  background-color: whitesmoke;
+  overflow: hidden;
+  border: 1rpx solid gainsboro;
+}
+.right_content_content {
+  display: flex;
+  justify-content: space-between;
+}
+.checkbox {
+  margin: 10rpx 0rpx 0rpx 5rpx;
+}
+.left {
+  margin: 10rpx;
+}
+.right {
+  margin-left: 14rpx;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+.right .name {
+  flex: 1;
+}
+.right_right {
+  line-height: 60rpx;
+  height: 60rpx;
+  display: flex;
+  margin-bottom: 10rpx;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+}
+.price {
+  color: red;
+  margin-right: 200rpx;
+}
+.strpper {
+  position: absolute;
+  z-index: 5;
+  right: 5rpx;
+  bottom: 14rpx;
+}
+.bottom {
+  background-color: royalblue;
+  align-items: flex-end;
+}
+.submit {
+  background-color: ghostwhite !important;
+  border-top: 1px solid rgb(225, 225, 225);
 }
