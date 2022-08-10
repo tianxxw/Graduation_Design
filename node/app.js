@@ -6,6 +6,7 @@ const userRouter = require('./router/user.js')
     // 导入路由模块
 const goods = require('./router/good')
 const shops = require('./router/shop')
+const orders = require('./router/order')
 const joi = require('joi')
     //导入验证规则的模块
     //导入token配置文件
@@ -61,6 +62,7 @@ app.use((err, req, res, next) => {
     app.use('/login', userRouter)
     app.use('/api', goods)
     app.use('/api', shops)
+    app.use('/api',orders)
 app.listen(3007, () => {
         console.log('api server running at http://127.0.0.1:3007')
     })
