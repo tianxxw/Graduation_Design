@@ -3,11 +3,10 @@
     "pages/home/home",
     "pages/shop/shop",
     "pages/personal/personal",
-    "pages/info/info",
-    "pages/rank/rank",
     "pages/search/search",
-    "pages/askforhelp/askforhelp",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/order/order",
+    "pages/info/info"
   ],
   "window":{
     "backgroundTextStyle":"dark",

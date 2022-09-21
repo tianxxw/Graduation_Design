@@ -11,9 +11,12 @@ Page({
     load1:true,
     checkedAll:false,
     result:[],
-    price:0
+    price:0,
+    sendData:[]
   },
   onChangeAll(event){
+    console.log('2222');
+    console.log(event.detail);
     this.setData({
       checkedAll:event.detail
     })
@@ -40,20 +43,31 @@ Page({
     console.log(this.data.result);
   },
   onChange(event,all = false) {
-    console.log(all);
-    console.log('change');
+    // console.log(all);
+    // console.log('change');
     console.log(event);
-    console.log(event.detail);
-    console.log(this.data.result);
+    // console.log(event.detail);
+    // console.log(this.data.result);
     // console.log(typeof event.detail);
     let idlist = event.detail ? event.detail : event
     console.log(idlist);
     let arr = this.data.goodsList
     let prop = 0
+
     if(event.detail) {
-      this.setData({
-        result:event.detail ? event.detail : event,
-      })
+      let arr2 = []
+      console.log(2);
+      for(let i = 0;i<idlist.length;i++) {
+        this.data.goodsList.forEach(item=>{
+          if(item.commodity_id == idlist[i]) {
+            arr2 = [...arr2,item]
+          }
+        }) 
+      }
+     this.setData({
+      result:event.detail ? event.detail : event,
+      sendData:arr2
+    })
     }
     else {
       // console.log('xxxxxxxxxxxxxxx');
@@ -64,29 +78,31 @@ Page({
         if(idlist.length < arr.length && idlist.length >= 1) {
           // console.log('kkkkkkkkkkkkkkkk');
           let arr1 = []
+          let arr2 = []
           this.data.goodsList.forEach(item=>{
              arr1 = [...arr1,item.good_id + '']
+             arr2 = [...arr2,item]
           })
-          console.log(arr1);
+          // console.log(arr1);
           this.setData({
-            result:arr1
+            result:arr1,
+            sendData:arr2
           })
         }  
       }
     }
-    console.log(this.data.result);
+    // console.log(this.data.result);
     arr.forEach((item1,index)=>{
-      console.log(item1);
+      // console.log(item1);
       // console.log('price');
       // console.log(idlist.length);
       if(idlist.length != 0) {
         idlist.forEach(item2=>{
-          console.log(item2);
+          // console.log(item2);
           if(item1.commodity_id == item2){
             // prop = [...prop,parseFloat((item1.commodity_price * item1.number)*100)]
-            console.log(prop);
+            // console.log(prop);
             prop = prop + parseFloat((item1.commodity_price * item1.number)*100)
-            console.log('prop   '+prop);
           }
         })
         if(idlist.length == 4) {
@@ -100,9 +116,9 @@ Page({
         }
       }
       else {
-        console.log('2');
+        // console.log('2');
         if(all) {
-          console.log('kxs');
+          // console.log('kxs');
           prop = 0
         }
       }
@@ -112,7 +128,6 @@ Page({
     })
   },
   onClick(event){
-    
   },
   onPlus(e){
     console.log(e);
@@ -232,6 +247,32 @@ Page({
         })
       }
     })
+  },
+  onSubmit() {
+    if(this.data.sendData.length == 0) {
+      wx.showToast({
+        title:'请选择商品',
+        icon:'error',
+        duration:2000
+      })
+    }else {
+      wx.navigateTo({
+        url: '/pages/info/info',
+        // events: {
+        //   // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+        //   acceptDataFromOpenedPage: function(data) {
+        //     // console.log(data)
+        //   },
+        //   someEvent: function(data) {
+        //     // console.log(data)
+        //   }
+        // },
+        success: (res)=> {
+          // 通过 eventChannel 向被打开页面传送数据
+          res.eventChannel.emit('acceptDataFromOpenerPage', { data: this.data.sendData })
+        }
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载

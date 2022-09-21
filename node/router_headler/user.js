@@ -5,14 +5,14 @@
 const axios = require("axios")
 const APPID = 'wx3e3e98f07ee2ec7c'
 const SECRET = '76c22e19e133803d8499398627a9b9a4'
-const info = { avatar:'https://c-ssl.dtstatic.com/uploads/item/201909/01/20190901144310_kvtdb.thumb.1000_0.jpg',name:'微信用户'}
+const info = { avatar:'http://127.0.0.1:3007/20190901144310.jpg',name:'微信用户'}
 const db = require('../db/index')
    //导入数据库操作模块
 exports.login = (req, res) => {
       console.log(req.body);
-       const sql0 = `select avatar,name,id from user where open_id = ?`
-       const sql1 = `insert into user value(?,?,?,?,?)`
-       const sql2 = 'update user set session_key = ? where id = ?'
+       const sql0 = `select avatar,name,id,login_num from user where open_id = ?`
+       const sql1 = `insert into user value(?,?,?,?,?,?,?)`
+       const sql2 = 'update user set session_key = ?,login_num = ? where id = ?'
        const code = req.body.code
        axios.get(`https://api.weixin.qq.com/sns/jscode2session?appid=${APPID}&secret=${SECRET}&js_code=${code}&grant_type=authorization_code`,)
        .then(function(response) {
@@ -23,7 +23,7 @@ exports.login = (req, res) => {
           return res.cc(err0)
          }
          if(results0.length == 0) {
-          db.query(sql1,[null,response.data.openid,response.data.session_key,info.avatar,info.name+response.data.openid],(err1,results1)=>{
+          db.query(sql1,[null,response.data.openid,response.data.session_key,info.avatar,info.name+response.data.openid,0,0],(err1,results1)=>{
            console.log(results1);
            if(err1) {
             return res.cc(err1)
@@ -45,9 +45,10 @@ exports.login = (req, res) => {
          })
          }
          else {
-          db.query(sql2,[response.data.session_key,results0[0].id],(err2,results2)=>{
+          console.log(results0[0]);
+          db.query(sql2,[response.data.session_key,Number.parseInt(results0[0].login_num)+1,results0[0].id],(err2,results2)=>{
           if(err2) {
-            return res.cc(err3)
+            return res.cc(err2)
           }
           })
           res.send({
@@ -60,3 +61,5 @@ exports.login = (req, res) => {
         })
        })
    }
+
+

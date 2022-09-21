@@ -1,196 +1,51 @@
-/* pages/info/info.wxss */
-/* pages/askforhelp/askforhelp.wxss */
-.conTainer{
-  width: 100%;
-  overflow: hidden;
+#body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  min-height: 100vh;
+  background-color: rgba(237,238,230);
 }
-.conTainerHeader {
-  width: 95%;
-  height: 60rpx;
-  display: grid;
-  grid-template-columns: 35% 65%;
+.van-icon {
+  margin: 20rpx;
 }
-.conTainerHeader .conTainerLeft{
-  height: 60rpx;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.conTainerHeader .conTainerLeft .getLocation {
-  width: 95%;
-  margin: 0 auto;
-  border-radius: 30rpx;
-  height: 40rpx;
-  display: flex;
-  line-height: 40rpx;
-  justify-content: left;
-  font-size: 20rpx;
-  background-color: whitesmoke;
-}
-.conTainerHeader .conTainerLeft .getLocation image {
-  width: 40rpx;
-  height: 40rpx;
-}
-.conTainerHeader .conTainerLeft .getLocation view {
-  height: 40rpx;
-  line-height: 40rpx;
-}
-.conTainerHeader .conTainerRight{
-  height: 60rpx;
-  display: flex;
-  justify-content:flex-end;
-  align-items: center;
-}
-.conTainerHeader .conTainerRight .search {
-  height: 40rpx;
-  width: 70%;
-  border-radius: 30rpx;
-  border:1px solid black;
-  background-color: whitesmoke;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.conTainerHeader .conTainerRight .search input{
-  display: block;
-  width: 87%;
-  margin: 0 auto;
-  height: 20rpx;
-  font-size: 20rpx;
-}
-.van-dropdown-menu__title{
-  font-size: 24rpx !important;
-}
-.van-dropdown-menu,.van-dropdown-menu--top--bottom,.van-dropdown-menu__item{
-  background-color: whitesmoke;
-  height: 60rpx !important;
-}
-.dropdownImage{
-  display: block;
-  width: 50rpx;
-  height: 50rpx;
-  background-color: lightgreen;
-  margin-top: 20rpx;
-}
-.dataZs{
-  width: 100%;
-
-}
-.dataCt{
-  width: 95%;
-  margin: 10rpx auto;
-  background-color: whitesmoke;
-  overflow: hidden;
-}
-.dataCtHeader{
-  margin: 10rpx auto;
-  width: 98%;
+#header {
   height: 100rpx;
-  display: flex;
-  justify-content: space-between;
+  margin: 20rpx;
+  border-radius: 5px;
+  background-color: white;
 }
-.dataCtHeader .avatar {
-  margin-left: 0rpx;
-  display: block;
-  height: 100rpx;
-  border-radius: 50rpx;
-  width: 100rpx;
-}
-.dataCtHeader .Header {
-  margin: 0 20rpx;
-  flex: 1;
-}
-.dataCtHeader .Header .HeaderLeft {
+#header > view {
   display: flex;
   justify-content: left;
-  height: 50rpx;
-  line-height: 50rpx;
 }
-.dataCtHeader .Header .HeaderLeft .nickName {
-  margin-left: 0rpx;
-}
-.dataCtHeader .Header .HeaderLeft .online{
-  margin-left: 40rpx;
-  width: 80rpx;
-  text-align: center;
-  border-radius: 30rpx;
-  background-color: lightsalmon;
-}
-.dataCtHeader .Header .HeaderLeft .offline{
-  margin-left: 20rpx;
-  text-align: center;
-  border-radius: 30rpx;
-  width: 80rpx;
-  background-color: lightgreen;
-}
-.dataCtHeader .Header .releaseDataTime {
-  height: 50rpx;
-  line-height: 55rpx;
-}
-.dataCtHeader .money {
-  width: 20%;
-  height: 100rpx;
+#header > view > view {
+  font-size: 44rpx;
   line-height: 100rpx;
-  text-align: right;
-  margin-right: 10rpx;
 }
-.text {
-  width: 80%;
-  margin-left: 130rpx;
+#info_content {
+  flex: 1;
+  background-color: green;
 }
-.textContainer {
-  width: 100%;
-  display: -webkit-box;    
-  -webkit-box-orient: vertical;    
-  -webkit-line-clamp: 2;    
-  overflow: hidden;
-}
-.textImageContainer {
-  width: 150rpx;
-  height: 150rpx;
-  margin-right: 20rpx;
-}
-.textImage {
-  width: 100%;
-  display: flex;
-  justify-content: left;
-}
-.bottom {
-  width: 98%;
-  height: 70rpx;
-  line-height: 70rpx;
-}
-.bottomContainer {
-  width: 100%;
-  margin: 10rpx;
-  display: flex;
-  justify-content: space-between;
-}
-.bottomContainer .termDateTime{
- color: red;
-}
-.bottomContainer .button {
-  width: 30%;
-  display: flex;
-  justify-content: center;
-  color: white;
-  font-size: 24rpx;
-}
-.bottomContainer .button view:first-child {
-  width: 60%;
-  background-color: orange;
-  border-top-left-radius: 50rpx;
-  border-bottom-left-radius: 50rpx;
-  text-align: center;
-}
-.bottomContainer .button view:last-child {
-  width: 40%;
-  padding-right: 10rpx;
+#info_content view {
+  height: 10px;
   background-color: red;
-  border-top-right-radius: 50rpx;
-  border-bottom-right-radius: 50rpx;
-  text-align: center;
+  display: flex;
+  justify-content: space-around;
+}
+#footer {
+  height: 200rpx;
+  background-color: palevioletred;
+}
+.image{
+  display: block;
+  width: 48%;
+}
+.image image {
+
+  width: 300rpx;
+  height: 300rpx;
+}
+.image .hz {
+  display: block;
+  width: 50%;
 }

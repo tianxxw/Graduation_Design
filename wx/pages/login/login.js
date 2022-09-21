@@ -83,7 +83,7 @@ Page({
           //发起网络请求
           wx.request({
             method:'post',
-            url: url + '/login/login',
+            url: url + '/api/login',
             data: {
               code: this.data.codeId
             },
@@ -98,7 +98,6 @@ Page({
                 key:'session_key',
                 data:JSON.stringify(res.data.session_key)
               })
-              wx
               wx.hideLoading({
                 success:(res)=>{
                   wx.showToast({
@@ -107,8 +106,9 @@ Page({
                       wx.getStorage({
                         key:'session_key',
                         success:(res)=>{
-                          vm.getUserLocation();
-                          console.log('session_key:',res.data);
+                          wx.switchTab({
+                            url: '/pages/home/home',
+                          })
                         }
                       })
                     }
@@ -138,12 +138,15 @@ Page({
     }  
   })
   },
-  getUserLocation: function () {
+  getUserLocation:function() {
     let vm = this;
+    console.log(1);
     wx.getSetting({
       success: (res) => {
+        console.log(2);
         if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) 
         {//如果没有授权就提示需要授权
+          console.log(3);
           wx.showModal({
             title: '请求授权当前位置',
             content: '需要获取您的地理位置，请确认授权',
@@ -157,7 +160,9 @@ Page({
               } else if (res.confirm) {
                 wx.openSetting({
                   success: function (dataAu) {
+                    console.log(2);
                     if (dataAu.authSetting["scope.userLocation"] == true) {
+                      console.log(3);
                       wx.showToast({
                         title: '授权成功',
                         icon: 'success',
@@ -184,11 +189,12 @@ Page({
           })
         } else if (res.authSetting['scope.userLocation'] == undefined) {
           //调用wx.getLocation的API
+          console.log(3);
           vm.getLocation();
         }
         else {
           //调用wx.getLocation的API
-          vm.getLocation();
+          // vm.getLocation();
         }
       }
     })
@@ -198,12 +204,16 @@ Page({
     wx.getLocation({
       type: 'wgs84',
       success: function (res) {
+        console.log(4);
         // console.log(JSON.stringify(res))
         var latitude = res.latitude
         var longitude = res.longitude
         vm.getLocal(latitude, longitude)
       },
       fail: function (res) {
+        var latitude = res.latitude
+        var longitude = res.longitude
+        vm.getLocal(latitude, longitude)
       }
     })
   },

@@ -1,6 +1,6 @@
 <view id="body">
   <view class="header">
-    <van-checkbox value="{{ checkedAll }}" bind:change="onChangeAll" class="h0">全选</van-checkbox>
+    <van-checkbox value="{{checkedAll}}" bind:change="onChangeAll" class="h0">全选</van-checkbox>
     <view wx:if="{{load1}}" class="h1" bindtap="check1">管理</view>
     <view wx:else class="h2">
       <view class="h1_right">
@@ -10,7 +10,8 @@
     </view>
   </view>
 <!-- -------------------------------------------------------------------------------------------------------- -->
-<view class="right_content" wx:for="{{goodsList}}" wx:key ="{{commodity_id}}">
+<view class="main_content">
+  <view class="right_content" wx:for="{{goodsList}}" wx:key ="commodity_id">
 <van-checkbox-group value="{{ result }}" bind:change="onChange"  class="checkobox-group" bindtap="onClick" data-id="{{item}}">
   <van-checkbox name="{{item.commodity_id}}" class="">
     <view class="right_content_content">
@@ -30,6 +31,7 @@
   </van-checkbox>
   <van-stepper value="{{item.number}}" integer="true" max="99" min="1" long-press="{{ false }}" class="strpper" bind:plus="onPlus" bind:minus="onMinus" data-number="{{item}}" name="{{item.commodity_id}}" />
 </van-checkbox-group>
+</view>
 </view>
 
 <!-- -------------------------------------------------------------------------------------------------------- -->

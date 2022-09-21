@@ -31,22 +31,6 @@
 .complete {
   margin-left: 30rpx;
 }
-.right_content {
-  position: relative;
-  border-radius: 5rpx;
-  color: black;
-  margin: 6rpx auto 0rpx;
-  width: 98%;
-  flex: 1;
-  height: 100%;
-  background-color: whitesmoke;
-  overflow: hidden;
-  border: 1rpx solid gainsboro;
-}
-.right_content_content {
-  display: flex;
-  justify-content: space-between;
-}
 .checkbox {
   margin: 10rpx 0rpx 0rpx 5rpx;
 }
@@ -65,14 +49,11 @@
 .right_right {
   line-height: 60rpx;
   height: 60rpx;
-  display: flex;
   margin-bottom: 10rpx;
-  flex-flow: row nowrap;
-  justify-content: flex-end;
 }
 .price {
   color: red;
-  margin-right: 200rpx;
+  margin-left: 0rpx;
 }
 .strpper {
   position: absolute;
@@ -87,4 +68,31 @@
 .submit {
   background-color: ghostwhite !important;
   border-top: 1px solid rgb(225, 225, 225);
+}
+#body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.main_content {
+  flex: 1;
+  overflow: scroll;
+}
+.right_content {
+  position: relative;
+  border-radius: 5rpx;
+  color: black;
+  margin: 6rpx auto 0rpx;
+  width: 98%;
+  flex: 1;
+  background-color: whitesmoke;
+  border: 1rpx solid gainsboro;
+}
+.right_content_content {
+  display: flex;
+  justify-content: space-between;
+  
+}
+.right_content:last-child {
+  margin-bottom: 130rpx;
 }

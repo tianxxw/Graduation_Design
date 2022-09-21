@@ -32,7 +32,7 @@
   </van-sidebar>
   <van-notify id="van-notify" />
   <view class="right" wx:if="{{activeKey == 0}}">
-    <view class="right_content" wx:for="{{goodsList}}" wx:key="{{commodity_id}}">
+    <view class="right_content" wx:for="{{goodsList}}" wx:key="commodity_id">
       <van-card
       tag="热门"
       price="{{item.commodity_price}}"
