@@ -58,7 +58,8 @@
         }else {
           arr[i].state = '已收货'
         }
-        this.money += Number.parseFloat(arr[i].price)
+        this.money = parseFloat((this.money + arr[i].price).toFixed(2))
+
       }
       this.orders = arr
     },
@@ -108,7 +109,7 @@
     <div></div>
    </div>
    <div class="top_right">
-     <div class="right_content">
+     <div class="right_content" @click="this.$router.push('/order')">
       <div style="width: 100px; height: 150px;background-color: salmon;">
        <div class="title">订单量</div>
        <el-image style="width: 60px; height: 90px" src="http://127.0.0.1:3007/order_num.png" fit="contain" />
@@ -117,14 +118,14 @@
        <div>{{orders.length}}单</div>
       </div>
      </div>
-     <div class="right_content">
+     <div class="right_content" @click="this.$router.push('/user')">
       <div style="width: 100px; height: 150px;background-color:rgba(0,122,204);">
        <div class="title">用户数</div>
        <el-image style="width: 60px; height: 90px" src="http://127.0.0.1:3007/user_num.png" fit="contain" />
       </div>
       <div class="text">{{users.length}}名</div>
      </div>
-     <div class="right_content">
+     <div class="right_content" @click="this.$router.push('/goods')" >
       <div style="width: 100px; height: 150px;background-color:rgba(250,195,38);">
        <div class="title">商品数</div>
        <el-image style="width: 60px; height: 90px" src="http://127.0.0.1:3007/good_num.png" fit="contain" />

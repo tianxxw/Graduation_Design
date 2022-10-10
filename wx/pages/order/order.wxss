@@ -1,1 +1,63 @@
 /* pages/order/order.wxss */
+.van-tabs {
+  height: 100vh;
+  position: relative;
+}
+.van-tab {
+  width: 100%;
+  height: 100%;
+}
+.content{
+  margin: 20rpx;
+  padding: 20rpx;
+  border-radius: 5rpx;
+  background-color: rgba(247,248,250);
+}
+.order_id {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.order_content {
+  overflow: hidden;
+  margin: 20rpx auto 40rpx;
+  display: flex;
+}
+image {
+  display: block;
+  width: 220rpx;
+  height: 220rpx;
+  margin-right: 20rpx;
+  border-radius: 5rpx;
+}
+
+.right {
+  height: 220rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.order_text {
+   flex: 1; 
+}
+.number, .price {
+  text-align: right;
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+.price span {
+  text-indent: 2rem;
+  color: red;
+}
+.bottom {
+  margin-top: 100rpx;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bottom view {
+  height: 60rpx;
+  line-height: 60rpx;
+}

@@ -1,21 +1,56 @@
 // pages/search/search.js
+var app = getApp()
+const url = app.globalData.httpurl;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list:[
-      {id:1,username:'拿外卖'},
-      {id:2,username:'网页设计'},
-      {id:3,username:'代练王者巅峰赛2000分'},
-      {id:4,username:'送水'},
-      {id:5,username:'北京烤鸭急急急'},
-      {id:6,username:'芳华苑买饭'},
-    ]
+    list:[],
+    value:'',
+    page:1
   },
-  gotoSearch() {
-    console.log('xx');
+  onSearch(e) {
+    this.setData({
+      value: e.detail,
+    });
+    this.getSearch()
+  },
+  getSearch() {
+    wx.showLoading({
+      title:'数据加载中...'
+    })
+    wx.request({
+      url:url + '/api/search',
+      method:'POST',
+      data:{
+        name:this.data.value,
+        page:this.data.page * 10
+      },
+      success:(res)=>{
+        console.log(res.data.data);
+        if(res.data.message == '添加搜索成功') {
+          this.setData({
+            list:res.data.data
+          })
+        }else {
+          this.setData({
+            list:[]
+          })
+        }
+        wx.hideLoading()
+      }
+    })
+  },
+  goDetail(e) {
+    console.log(e.currentTarget.dataset.id);
+    wx.navigateTo({
+      url:'/pages/detail/detail',
+      success:(res)=>{
+        res.eventChannel.emit('acceptDataFromOpenerPage', { data: e.currentTarget.dataset.id })
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载

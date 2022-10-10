@@ -61,8 +61,7 @@
  <div class="content">
    <div class="title" ref="select">
     <div @click="gotoCom('Sale',$event)" class="sk" id="0">在售商品</div>
-    <div @click="gotoCom('Sales',$event)" id="1">商品搜索</div>
-    <div @click="gotoCom('Addsp',$event)" id="2">添加商品</div>
+    <div @click="gotoCom('Addsp',$event)" id="1">添加商品</div>
    </div>
    <keep-alive>
     <component :is="comName" style="margin: 0px 10px;"></component>

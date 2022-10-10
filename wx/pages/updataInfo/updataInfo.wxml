@@ -1,0 +1,26 @@
+<!--pages/updataInfo/updataInfo.wxml-->
+<view id="body">
+  <view class="image">
+     <view>头像</view>
+     <view class="avatar">
+       <image id="image" src="{{info.avatar}}"></image>
+     </view>
+  </view>
+  <view>
+    <view>微信号</view>
+     <view>{{info.id}} <span>></span></view>
+  </view>
+  <view>
+    <view>用户名</view>
+    <view><span>></span></view>
+  </view>
+  <view>
+   <view>性别</view>
+   <view>{{info.sex == 0 ? '男' : '女'}} <span>></span></view>
+  </view>
+  <view>
+    <view>更多信息</view>
+    <view>{{}} <span>></span></view>
+  </view>
+</view>
+

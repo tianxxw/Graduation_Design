@@ -1,3 +1,16 @@
 <!--pages/login/login.wxml-->
-<text>pages/login/login.wxml</text>
-<button open-type="getPhoneNumber" type="primary" bindtap="getLogin">微信用户一键登录</button>
+<view class="content">
+  <view id="body">
+    <view class="image">
+      <image src="../../static/logo.jpg"></image>
+      <view class="title">轻晨饮品鲜奶预售店</view>
+    </view>
+    <button open-type="getPhoneNumber" type="primary" bindtap="getLogin">微信授权登录</button>
+    <button open-type="getPhoneNumber" type="primary" plain="true" bindtap="getLogin">微信手机号一键登录</button>
+    <view>其他手机号登录</view>
+  </view>
+  <view id="footer">
+    登录即表明您同意我们的<span>《用户注册协议》</span>
+  </view>
+</view>
+

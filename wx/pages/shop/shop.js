@@ -24,6 +24,7 @@ Page({
       return this.data.result.includes(item.good_id + '')
     })
     let arr = []
+    let arr2 = []
     //按钮没有全选时为FALSE，全选了为true
     if(k) {
       this.setData({
@@ -34,13 +35,14 @@ Page({
     else {
       this.data.goodsList.map(item=>{
         arr =  [...arr,item.good_id + '']
+        arr2 = [...arr2,item]
       })
       this.setData({
-        result:arr
+        result:arr,
+        sendData:arr2
       })
       this.onChange(arr,true)
     }
-    console.log(this.data.result);
   },
   onChange(event,all = false) {
     // console.log(all);
@@ -95,7 +97,7 @@ Page({
     arr.forEach((item1,index)=>{
       // console.log(item1);
       // console.log('price');
-      // console.log(idlist.length);
+      console.log(idlist.length);
       if(idlist.length != 0) {
         idlist.forEach(item2=>{
           // console.log(item2);
@@ -105,7 +107,8 @@ Page({
             prop = prop + parseFloat((item1.commodity_price * item1.number)*100)
           }
         })
-        if(idlist.length == 4) {
+        console.log(idlist.length == this.data.goodsList.length);
+        if(idlist.length == this.data.goodsList.length) {
           this.setData({
             checkedAll:true
           })
@@ -121,6 +124,9 @@ Page({
           // console.log('kxs');
           prop = 0
         }
+        this.setData({
+          checkedAll:false
+        })
       }
       this.setData({
         price:prop,
@@ -155,7 +161,7 @@ Page({
           data:{
             number:goodlist[index].number,
             price:goodlist[index].commodity_price,
-            shop_cart_id:goodlist[index].shop_cart_id
+            id:goodlist[index].id
           },
           success:(res)=>{
             this.data.result.forEach(item=>{
@@ -178,34 +184,29 @@ Page({
     let that = this
     let good_id = e.currentTarget.dataset.number.good_id
     list.number = list.number - 1
-    // console.log(list.commodity_id);
     let goodlist = this.data.goodsList
     goodlist.forEach((item,index)=>{
-      // console.log(item);
       if(item.commodity_id == list.commodity_id) {
-        // console.log(index);
         goodlist[index] = undefined
         let k = goodlist[index]
-        // console.log(goodlist[index]);
         goodlist[index] = list 
-        // console.log(goodlist[index]);
         this.setData({
           k:goodlist
         })
+        console.log(goodlist[index].number);
         wx.request({
           url:url + '/api/shop3',
           method:'post',
           data:{
             number:goodlist[index].number,
             price:goodlist[index].commodity_price,
-            shop_cart_id:goodlist[index].shop_cart_id
+            id:goodlist[index].id
           },
           success:(res)=>{
-            console.log(1);
+            console.log(res);
             this.data.result.forEach(item=>{
               if(item == good_id) {
                 console.log();
-                // that.onChange((good_id + '').split(','))
                 that.onChange(this.data.result)
               }
             })
@@ -240,9 +241,19 @@ Page({
           },
           success:(res)=>{
             console.log(res);
-            this.setData({
-              goodsList:res.data.data
-            })
+            if(res.data.message != "获取失败!") {
+              this.setData({
+                goodsList:res.data.data
+              })
+              wx.hideLoading()
+            }else {
+              this.setData({
+                goodsList:[],
+                price:0,
+                checkedAll:false
+              })
+              wx.hideLoading()
+            }
           }
         })
       }
@@ -258,19 +269,42 @@ Page({
     }else {
       wx.navigateTo({
         url: '/pages/info/info',
-        // events: {
-        //   // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
-        //   acceptDataFromOpenedPage: function(data) {
-        //     // console.log(data)
-        //   },
-        //   someEvent: function(data) {
-        //     // console.log(data)
-        //   }
-        // },
         success: (res)=> {
           // 通过 eventChannel 向被打开页面传送数据
-          res.eventChannel.emit('acceptDataFromOpenerPage', { data: this.data.sendData })
+          res.eventChannel.emit('acceptDataFromOpenerPage', { data: this.data.sendData ,price:this.data.price})
         }
+      })
+    }
+  },
+  deleteGood() {
+    if(this.data.result.length>0) {
+      let vm = this
+      wx.request({
+        url:url + '/api/deleteShopGoods',
+        method:'post',
+        data:{
+          id:this.data.result
+        },
+        success:(res)=>{
+          console.log(1);
+          vm.setData({
+            load1:true,
+            result:[],
+            sendData:[]
+          })
+          vm.getGoods()
+        },
+        fail:(res)=>{
+          console.log(2);
+          vm.getGoods()
+          vm.onChange()
+        }
+      })
+    }else {
+      wx.showToast({
+        title:'请选择商品后再进行操作',
+        icon:'error',
+        duration:2000
       })
     }
   },
@@ -278,7 +312,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    
+    wx.showLoading({
+      title:'数据加载中...'
+    })
   },
 
   /**
@@ -293,20 +329,25 @@ Page({
    */
   onShow() {
     this.getGoods()
+    if(this.data.goodsList.length != this.data.result.length) {
+      this.setData({
+        checkedAll:false
+      })
+    }
+    
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    
   },
 
   /**

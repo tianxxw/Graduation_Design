@@ -2,19 +2,50 @@
   <view id="header">
    <view bindtap="getPosition" >
     <van-icon name="location-o" size="60rpx" />
-    <view>选择收货地址</view>
+    <view>{{position}}</view>
    </view>
   </view>
-  <view id="info_content" wx:for="{{arr}}" wx:key="commodity_id" >
-    <view class="image">
-      <image src="{{item.commodity_imgurl}}"></image>
+  <view id="info">
+    <view id="info_content">
+    <view>
+      <van-icon name="shop-o" size="60rpx" />
+      <view class="second_title">清晨饮品</view>
     </view>
-    <view class="hz">
-      <view>{{item.commodity_name}}</view>
-      <view>{{item.commodity_price}}</view>
-      <view></view>
-      <view></view>
+    <view class="info_info"  wx:for="{{list}}" wx:key="commodity_id">
+      <view class="image">
+        <image src="{{item.commodity_imgurl}}"></image>
+      </view>
+      <view class="hz">
+        <view style="flex: 1;">{{item.commodity_name}}</view>
+        <view style="display: flex;justify-content: space-between; height: 40rpx;">
+          <view style="color: rgb(238,10,36);margin-left: 20rpx;">单价 ¥ {{item.commodity_price}}</view>
+          <view style="margin-right: 20rpx;">数量 x {{item.number}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="wenzi">
+      <view>配送服务</view>
+      <view>无</view>
+    </view>
+    <view class="wenzi">
+      <view>店铺优惠</view>
+      <view>无</view>
+    </view>
+    <view class="wenzi">
+      <view>运险费</view>
+      <view>无</view>
+    </view>
     </view>
   </view>
-  <view id="footer"></view>
+  <view id="footer">
+   <view class="right"></view>
+   <view class="left">
+        <view>
+          合计:
+        <span style="color: red;"> {{xsprice}}</span>
+        元
+        </view>
+        <view bindtap="getOrder">支付</view>
+   </view>
+  </view>
 </view>

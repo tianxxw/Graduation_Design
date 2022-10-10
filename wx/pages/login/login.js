@@ -88,8 +88,8 @@ Page({
               code: this.data.codeId
             },
             success:(res)=>{
-              console.log(res.data);
-              console.log(res.data.session_key);
+              // console.log(res.data);
+              // console.log(res.data.session_key);
               wx.setStorage({
                 key:'info',
                 data:JSON.stringify(res.data.info[0])
@@ -98,23 +98,26 @@ Page({
                 key:'session_key',
                 data:JSON.stringify(res.data.session_key)
               })
-              wx.hideLoading({
-                success:(res)=>{
-                  wx.showToast({
-                    title:'登录成功！',
-                    success:(res)=>{
-                      wx.getStorage({
-                        key:'session_key',
-                        success:(res)=>{
-                          wx.switchTab({
-                            url: '/pages/home/home',
-                          })
-                        }
-                      })
-                    }
-                  })
-                }
-              })
+              setTimeout(()=>{
+                wx.hideLoading({
+                  success:(res)=>{
+                    wx.showToast({
+                      title:'登录成功！',
+                      success:(res)=>{
+                        wx.getStorage({
+                          key:'session_key',
+                          success:(res)=>{
+                            wx.switchTab({
+                              url: '/pages/home/home',
+                            })
+                            // this.getUserLocation()
+                          }
+                        })
+                      }
+                    })
+                  }
+                })
+              },1200)
             },
             fail:(res)=>{
               console.log(res);

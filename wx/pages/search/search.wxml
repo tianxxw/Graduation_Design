@@ -1,29 +1,19 @@
 <!--pages/search/search.wxml-->
 <view class="body">
-  <view class="body_header">
-    <view class="header">
-  <view class="search" bindtap="gotoSearch">
-    <view class="search-container">
-      <view class="input">
-        <image class="search-before" src="/static/sarch.png"></image>
-        <input class="searchInput" auto-focus placeholder="取快递" focus="true"/>
-      </view>
-    </view> 
+  <view class="top">
+    <van-search value="{{ value }}" placeholder="请输入商品" bind:search="onSearch" bind:cancel="onCancel" bind:change="onChange" />
   </view>
-  <view class="searchButton">搜索</view>
+  <view class="contMain">
+  <view wx:for="{{list}}" wx:key="commodity_id" bindtap="goDetail" data-id="{{item.commodity_id}}"  >
+     <view class="left">
+      <image mode="widthFix" src="{{item.commodity_imgurl}}"></image>
+     </view>
+     <view class="right">
+      <view>{{item.commodity_name}}</view>
+      <view>单价：¥ <span>{{item.commodity_price}}</span></view>
+     </view>
+  </view>
 </view>
 </view>
 
-<view class="rmContent">
-  <view class="rmSearch">
-   <text>热门搜索</text>
- </view>
-</view>
-<view class="contMain">
-  <view class="contBody">
-    <view wx:for="{{list}}" wx:key="id">
-      {{item.username}}
-  </view>
-  </view>
-</view>
-</view>
+

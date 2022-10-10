@@ -1,0 +1,4 @@
+<view class="container">
+  <icon class="icon-box-img" type="success" size="200rpx" ></icon>
+  <view class="text" >下单成功，{{time}}s后将自动跳转到首页</view>
+</view>

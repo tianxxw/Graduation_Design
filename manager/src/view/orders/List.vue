@@ -1,4 +1,5 @@
 <script>
+  import { Edit } from '@element-plus/icons-vue'
  export default{
    data() {
     return {
@@ -13,11 +14,52 @@
     dialogVisible:false
     }
    },
+   components() {
+    Edit
+   },
    created() {
     this.getOrder()
    },
+   mounted() {
+      let contain = this.$refs.body
+      let viewHeight = document.documentElement.clientHeight
+      console.log(viewHeight-220);
+      let height = parseInt((viewHeight - 180)/54)
+      this.pageSize = height
+      window.addEventListener('resize',this.resize)
+      setInterval(()=>{
+        this.getOrder2()
+      },3000)
+   },
    methods:{
-    async getOrder() {
+    async updataButton(order_number) {
+      console.log(order_number);
+      const data = await this.$http({
+        method:'post',
+        url:'/maorders/updateSh',
+        headers:{
+          authorization:window.sessionStorage.getItem('token')
+        },
+        data:{
+          order_number
+        }
+      })
+      this.getOrder2()
+      ElMessage({
+        message: '发货成功',
+        type: 'success',
+        grouping:true,
+        duration:3000
+      })
+      },
+    async resize() {
+      let contain = this.$refs.body
+      let viewHeight = document.documentElement.clientHeight
+      console.log(viewHeight-220);
+      let height = parseInt((viewHeight - 180)/54)
+      this.pageSize = height
+    },
+    async getOrder2() {
       const data = await this.$http({
         method:'get',
         url:'/maorders/orders',
@@ -26,6 +68,7 @@
         }
       })
       let arr = data.data.result
+      console.log(arr);
       for(let i = 0;i<arr.length;i++) {
         arr[i]['position'] = (arr[i].province_name == null ? '' : arr[i].province_name) + (arr[i].city_name == null ? '' : arr[i].city_name) + (arr[i].county_name == null ? '' : arr[i].county_name) + (arr[i].street_name == null ? '' : arr[i].street_name) + (arr[i].detail_info_new == null ? '' : arr[i].detail_info_new)
         arr[i].create_time = arr[i].create_time.slice(0,19)
@@ -38,35 +81,70 @@
           arr[i].state = '已收货'
         }
       }
-      this.orders = arr
+      this.orders = arr.reverse()
       this.total = arr.length
-      ElMessage({
-        message: '数据获取成功',
-        type: 'success',
-        grouping:true,
-        duration:3000
+    },
+    async getOrder() {
+      const data = await this.$http({
+        method:'get',
+        url:'/maorders/orders',
+        headers:{
+          authorization:window.sessionStorage.getItem('token')
+        }
       })
-      },
-      viewDetails (row,column,event) {
+      let arr = data.data.result
+      console.log(arr);
+      for(let i = 0;i<arr.length;i++) {
+        arr[i]['position'] = (arr[i].province_name == null ? '' : arr[i].province_name) + (arr[i].city_name == null ? '' : arr[i].city_name) + (arr[i].county_name == null ? '' : arr[i].county_name) + (arr[i].street_name == null ? '' : arr[i].street_name) + (arr[i].detail_info_new == null ? '' : arr[i].detail_info_new)
+        arr[i].create_time = arr[i].create_time.slice(0,19)
+        arr[i].create_time = arr[i].create_time.replace(/T/,' ')
+        if(arr[i].state == 0) {
+          arr[i].state = '待付款'
+        }else if(arr[i].state == 1) {
+          arr[i].state = '已下单'
+        }else {
+          arr[i].state = '已收货'
+        }
+      }
+      this.orders = arr.reverse()
+      this.total = arr.length
+    },
+    viewDetails (row,column,event) {
         console.log(row); 
         this.details = row
         this.dialogVisible = true
-      }
-   }
+    }
+  }
  }
  </script>
 <template>
   <div ref="body">
     <el-table :data="orders.slice((currentPage-1)*pageSize,currentPage*pageSize)" border @row-click="viewDetails" >
       <el-table-column prop="order_number" label="订单号" width="300" />
+      <el-table-column prop="user_id" label="下单人id" width="90" />
       <el-table-column prop="price" label="订单金额" width="90" />
-      <el-table-column prop="position" label="收货地址" />
+      <el-table-column class="position" prop="position" label="收货地址" />
       <el-table-column prop="username" label="收货人" width="70" />
-      <el-table-column prop="tel_number" label="电话" width="130" />
-      <el-table-column prop="postal_code" label="邮编地址" width="100" />
+      <!-- <el-table-column prop="tel_number" label="电话" width="130" /> -->
       <el-table-column prop="create_time" label="下单时间" width="170" />
       <el-table-column prop="state" label="订单状态" width="90" >
       </el-table-column>
+      <el-table-column prop="instate" label="发货状态" width="90" >
+        <template #default="row1">
+          <el-row>
+             {{row1.row.instate == 0 ? '未发货' : '已发货'}}
+          </el-row>
+         </template>
+      </el-table-column>
+      <el-table-column prop="order_number instate" label="操作" width="110" >
+        <template #default="button">
+         <el-row>
+          <el-button icon="" :disabled="button.row.instate" type="success" @click.stop="updataButton(button.row.order_number)">
+            {{button.row.instate == 0 ? '确认收货' : '已发货'}}
+          </el-button>
+         </el-row>
+        </template>
+       </el-table-column>
      </el-table>
      <el-pagination 
       background 
@@ -180,4 +258,9 @@
     text-align: center;
     border-radius: 4px;
   }
+  .el-button {
+    height: 30px;
+    width: 100px;
+  }
+
 </style>

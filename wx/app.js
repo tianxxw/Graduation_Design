@@ -48,7 +48,7 @@ App({
     navBottom:0,
     cookie:0,
     CodeId:0,
-    httpurl:'http://127.0.0.1:3007',
+    httpurl:'http://192.168.112.1:3007',
     latitude:'',
     longitude:''
   },

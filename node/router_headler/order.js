@@ -18,7 +18,7 @@ exports.postOrder = async (req,res)=>{
   let times = y+ '-' + m + '-' + d + ' ' + h + ':' + min +':' + s
   //订单生成时间
   const sql0 = 'select id from user where session_key = ?'
-  const sql1 = 'insert into order_table (id,order_number,order_num,user_id,price,create_time,tel_number,province_name,city_name,county_name,street_name,detail_info_new,national_code,postal_code,username,state) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);' 
+  const sql1 = 'insert into order_table (id,order_number,order_num,user_id,price,create_time,tel_number,province_name,city_name,county_name,street_name,detail_info_new,national_code,postal_code,username,state,instate) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);' 
   const sql2 = 'select id from order_table where user_id = ?'
   //sql语句
   let sql3 = 'insert into order_good (id,order_id,good_id,number) values'
@@ -47,7 +47,9 @@ exports.postOrder = async (req,res)=>{
   })
   //需要从购物车中删除的商品
   const result =  await getinfo(sql0,JSON.parse(session_key),res);
-  await getinfo(sql1,[null,order_id,list.length,result[0].id,price,times,info.telNumber,info.provinceName,info.cityName,info.countyName,info.streetName,info.detailInfoNew == undefined ? null : info.detailInfoNew,info.nationalCode == undefined ? null : info.nationalCode,info.postalCode,info.userName,state],res)
+  console.log('-------------------------------------------------------');
+  console.log(order_id,list.length,result[0].id,price,times,info.telNumber,info.provinceName,info.cityName,info.countyName,info.streetName,info.detailInfoNew,info.nationalCode,info.postalCode,info.userName,state);
+  await getinfo(sql1,[null,order_id,list.length,result[0].id,price,times,info.telNumber,info.provinceName,info.cityName,info.countyName,info.streetName,info.detailInfoNew == undefined ? null : info.detailInfoNew,info.nationalCode == undefined ? null : info.nationalCode,info.postalCode,info.userName,state,0],res)
   const result2 = await getinfo(sql2,result[0].id,res);
   const arrdata = await arrData(result2,list);
   console.log(arrdata);
@@ -60,10 +62,18 @@ exports.getOrder = async (req,res)=>{
   const sql1 = 'select * from user where session_key = ?'
   const sql2 = 'select * from order_table inner join order_good og on order_table.id = og.order_id inner join commodity on og.good_id = commodity.commodity_id where order_table.user_id = ? && order_table.state = ?'
   const info =  await getinfo(sql1,JSON.parse(req.query.session_key),res);
-  const result = await getinfo(sql2,[info[0].id,parseInt(req.query.listId)],res);
+  const result = await getinfo(sql2,[info[0].id,parseInt(req.query.state)],res);
   await resultSort(result,res)
 }
 //客户获取订单
+exports.getINOrder = async (req,res)=>{
+  const sql1 = 'select * from user where session_key = ?'
+  const sql2 = 'select * from order_table inner join order_good og on order_table.id = og.order_id inner join commodity on og.good_id = commodity.commodity_id where order_table.user_id = ? && order_table.instate = ? && order_table.state = ?'
+  const info =  await getinfo(sql1,JSON.parse(req.query.session_key),res);
+  const result = await getinfo(sql2,[info[0].id,parseInt(req.query.instate),parseInt(req.query.state)],res);
+  await resultSort(result,res)
+}
+//发货状态订单
 exports.allOrder = async (req,res)=>{
   console.log(req.body);
   const sql = 'select * from order_table inner join order_good og on order_table.id = og.order_id inner join commodity on og.good_id = commodity.commodity_id'
@@ -95,6 +105,28 @@ exports.searchOrder = async (req,res)=>{
 //搜索订单
 exports.orderDetails = async (req,res) => {
   const sql = 'select * from order_table inner join order_good og on order_table.id = og.order_id inner join commodity on og.good_id = commodity.commodity_id where order_table.id = ？'
+}
+exports.updataeOrder1 = async (req,res) => {
+  const sql = 'update order_table set instate = 1 where order_number = ?'
+  const data = await getinfo(sql,[req.body.order_number],res)
+  res.send({
+    message:'修改成功'
+  })
+}
+exports.updataeOrder2 = async (req,res) => {
+  const sql1 = 'select * from user where session_key = ?'
+  const sql2 = 'select * from order_table inner join order_good og on order_table.id = og.order_id inner join commodity on og.good_id = commodity.commodity_id where order_table.user_id = ? && order_table.instate = ?'
+  const info =  await getinfo(sql1,JSON.parse(req.query.session_key),res);
+  const result = await getinfo(sql2,[info[0].id,parseInt(req.query.instate)],res);
+  await resultSort(result,res)
+}
+exports.updataeOrder3 = async (req,res) => {
+  console.log(req.query);
+  const sql = 'update order_table set state = 2 where order_number = ?'
+  await getinfo(sql,req.query.order_number,res);
+  res.send({
+    message:'收货成功'
+  })
 }
 //查看订单详情
 

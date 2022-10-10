@@ -1,1 +1,49 @@
 /* pages/login/login.wxss */
+.content {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+#body .image {
+  height: 400rpx;
+  margin: 100rpx auto 70rpx;
+}
+#body .image image {
+  height: 200rpx;
+  width: 200rpx;
+  border-radius: 30rpx;
+}
+#body {
+  flex: 1;
+  width: 100%;
+}
+#body > button {
+  display: block;
+  width: 80%;
+  margin-bottom: 20rpx;
+  font-size: 32rpx;
+}
+#body .title {
+  font-size: 34rpx;
+  color: black;
+}
+#body view {
+  text-align: center;
+  color: rgba(190,190,190);
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 28rpx;
+}
+#footer {
+  height: 200rpx;
+  line-height: 200rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: rgba(190,190,190);
+}
+#footer span {
+  color: rgba(26,173,25);
+}

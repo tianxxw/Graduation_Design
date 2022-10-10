@@ -13,3 +13,12 @@ exports.maUser = async (req,res)=>{
  const sql = 'select * from ma_user'
  await getinfo(sql,[],res,1)
 }
+exports.search = async (req,res) =>{
+ console.log(req.body);
+ const sql = 'select id,open_id,avatar,name,sex,login_num from user where id like ? limit 0,?'
+ const data = await getinfo(sql,['%'+req.body.id+'%',req.body.page],res)
+ console.log(data);
+ res.send({
+  data
+ })
+}

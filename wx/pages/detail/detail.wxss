@@ -1,0 +1,43 @@
+/* pages/detail/detail.wxss */
+.body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.body > view:first-child image{
+   display: block;
+   width: 100%;
+}
+.content {
+  flex: 1;
+  padding: 20rpx;
+  font-size: 40rpx;
+}
+.content view {
+
+  line-height: 60rpx;
+}
+.content view:last-child {
+  text-align: right;
+}
+.content span {
+  color: red;
+}
+.bottom {
+  height: 120rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 40rpx;
+  line-height: 120rpx;
+  text-align: center;
+}
+.bottom view:first-child {
+  width: 60%;
+  color: white;
+  background-color: tomato;
+}
+.bottom view:last-child {
+  flex: 1;
+  background-color: red;
+  color: white;
+}

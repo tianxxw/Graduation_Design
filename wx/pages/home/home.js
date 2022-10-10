@@ -35,96 +35,18 @@ Page({
      },
      checkout:1
   },
-  getLocation: function () {
-    let vm = this;
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
-        console.log(2);
-        // console.log(JSON.stringify(res))
-        var latitude = res.latitude
-        var longitude = res.longitude
-        vm.getLocal(latitude, longitude)
-      },
-      fail: function (res) {
-      }
-    })
-  },
-  getLocal: function (latitude, longitude) {
-    console.log(3);
-    let vm = this;
-    qqmapsdk.reverseGeocoder({
-      location: {
-        latitude: latitude,
-        longitude: longitude
-      },
-      success: function (res) {
-        console.log(4);
-        app.globalData.province = res.result.ad_info.province
-        app.globalData.city = res.result.ad_info.city
-        vm.setData({
-          'region.province':res.result.ad_info.province,
-          'region.city':res.result.ad_info.city
-        })
-        wx.switchTab({
-          url: '/pages/home/home',
-        })     
-      },
-      fail: function (res) {
-        console.log(res);
-      },
-      complete: function (res) {
-        // console.log(res);
-        wx.hideLoading({
-          title:'获取位置信息成功！'
-        })
-      }
-    });
-  },
-  onChange(event) {
-    Notify({ type: 'primary', message: event.detail });
-    this.setData({
-      activeKey:event.detail
-    })
-  },
-  onSearch() {
-    wx.request({
-      url:'http://127',
-      method:'GET',
-      data:{
-        name:'zs',
-        age:22
-      }
-    })
-  },
-  gotoSearch(){
-    wx.navigateTo({
-      url: '/pages/search/search',
-    })
-  },
-  getGoods() {
-    wx.request({
-      // url:'http://127.0.0.1:3007/api/good1',
-      url:url + '/api/good1',
-      method:'GET',
-      success:(res)=>{
-        this.setData({
-          goodsList:res.data.data
-        })
-      }
-    })
-  },
-  goshop(e) {
-    // console.log(e);
-    // console.log(e.currentTarget.dataset.id);
-  },
-  getDD(e){
-    
-  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title:'数据加载中...'
+    })
+    this.getRegion()
+    qqmapsdk = new QQMapWX({
+      key: 'XY2BZ-KZP6F-ACUJB-JXR3B-LXRNV-LGFSA' //换成你自己申请的key秘钥
+    });
+   this.getRegion()
    this.setData({
      'nav.navHeight': app.globalData.navHeight,
      'nav.navTop': app.globalData.navTop,
@@ -140,14 +62,11 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    qqmapsdk = new QQMapWX({
-      key: 'XY2BZ-KZP6F-ACUJB-JXR3B-LXRNV-LGFSA' //换成你自己申请的key秘钥
-    });
+  onReady () {
     wx.checkSession({
       success:()=>{
-        console.log(1);
         this.getLocation()
+        // this.getRegion()
       },
       fail:()=>{
          wx.clearStorage({
@@ -168,33 +87,25 @@ Page({
                })
              }else {
                 console.log('用户点击取消');
+                // this.getLocation()
+               
              }
            }
          })
       }
     })
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow () {
-
-    this.getLocation()
-    this.getRegion()
+    
   },
-
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
 
-  },
-  getRegion(){
-    this.setData({
-      'region.city':app.globalData.city,
-      'region.province':app.globalData.province
-    })
   },
   /**
    * 生命周期函数--监听页面卸载
@@ -308,7 +219,6 @@ Page({
                 })
               },
               fail:(res)=>{
-                console.log(1);
                 wx.showModal({
                   title: '提示',
                   content: '你尚未登录，是否前往登录',
@@ -326,7 +236,6 @@ Page({
             })
           },
           fail:(res)=>{
-            console.log(2);
             wx.showModal({
               title: '提示',
               content: '你尚未登录，是否前往登录',
@@ -344,7 +253,6 @@ Page({
         })
       },
       fail:(res)=>{
-        console.log(3);
         wx.showModal({
           title: '提示',
           content: '你尚未登录，是否前往登录',
@@ -360,6 +268,97 @@ Page({
         })
       }
     })
+  },
+  getLocation: function () {
+    let vm = this;
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        console.log('2k');
+        console.log(res);
+        var latitude = res.latitude
+        var longitude = res.longitude
+        vm.getLocal(latitude, longitude)
+      },
+      fail: function (res) {
+        console.log('3k')
+      }
+    })
+  },
+  getLocal: function (latitude, longitude) {
+    console.log('333');
+    let vm = this;
+    qqmapsdk.reverseGeocoder({
+      location: {
+        latitude: latitude,
+        longitude: longitude
+      },
+      success: function (res) {
+        console.log('44');
+        app.globalData.province = res.result.ad_info.province
+        app.globalData.city = res.result.ad_info.city
+        vm.setData({
+          'region.province':res.result.ad_info.province,
+          'region.city':res.result.ad_info.city
+        })
+        wx.switchTab({
+          url: '/pages/home/home',
+        })     
+      },
+      fail: function (res) {
+        console.log(res);
+      },
+      complete: function (res) {
+        // console.log(res);
+        // wx.showToast({
+        //   title:'获取位置信息成功！'
+        // })
+      }
+    });
+  },
+  onChange(event) {
+    Notify({ type: 'primary', message: event.detail });
+    this.setData({
+      activeKey:event.detail
+    })
+  },
+  onSearch() {
+    wx.request({
+      url:'http://127',
+      method:'GET',
+      data:{
+        name:'zs',
+        age:22
+      }
+    })
+  },
+  gotoSearch(){
+    wx.navigateTo({
+      url: '/pages/search/search',
+    })
+  },
+  getGoods() {
+    wx.request({
+      url:url + '/api/good1',
+      method:'GET',
+      success:(res)=>{
+        this.setData({
+          goodsList:res.data.data
+        })
+        wx.hideLoading()
+      }
+    })
+  },
+  goshop(e) {
 
+  },
+  getDD(e){
+    
+  },
+  getRegion(){
+    this.setData({
+      'region.city':app.globalData.city,
+      'region.province':app.globalData.province
+    })
   },
 })

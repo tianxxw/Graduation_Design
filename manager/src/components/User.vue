@@ -1,6 +1,5 @@
 <script>
  import updateUserinfoVue from '../view/users/updateUserinfo.vue';
- import userListVue from '../view/users/userList.vue';
  import userSearchVue from '../view/users/userSearch.vue';
  export default{
    data() {
@@ -11,7 +10,6 @@
    },
    components:{
     updateUserinfoVue,
-    userListVue,
     userSearchVue
    },
    created() {
@@ -53,8 +51,7 @@
  <div class="content">
   <div class="title" ref="select">
    <div @click="gotoCom('updateUserinfoVue',$event)" class="sk" id="0">用户列表</div>
-   <div @click="gotoCom('userListVue',$event)" id="1">查找用户</div>
-   <div @click="gotoCom('userSearchVue',$event)" id="2">添加用户</div>
+   <div @click="gotoCom('userSearchVue',$event)" id="1">查找用户</div>
   </div>
   <keep-alive>
    <component :is="userName" style="margin: 0px 10px;"></component>

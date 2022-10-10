@@ -1,0 +1,14 @@
+<!--pages/detail/detail.wxml-->
+<view class="body">
+  <view>
+   <image mode="widthFix" src="{{good.commodity_imgurl}}"></image>
+  </view>
+  <view class="content">
+    <view>{{good.commodity_name}}</view>
+    <view>单价：¥ <span>{{good.commodity_price}}</span></view>
+  </view>
+  <view class="bottom">
+      <view bindtap="AddToCart">加入购物车</view>
+      <view bindtap="onSubmit">下单</view>
+  </view>
+</view>

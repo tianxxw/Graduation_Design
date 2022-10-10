@@ -10,8 +10,8 @@
 <!-- <my-test1 nav1="{{nav}}" regions="{{region}}" xk="{{checkout}}"></my-test1> -->
 <swiper indicator-dots="true" interval="3000" duration="500" circular="true" autoplay="true">
    <swiper-item><view class="item"><image src="../../static/lbt1.png" class="itemImage1" mode="heightFix"></image></view></swiper-item>
-   <swiper-item><view class="item"></view></swiper-item>
-   <swiper-item><view class="item"></view></swiper-item>
+   <swiper-item><view class="item"><image src="../../static/lbt2.jpg" class="itemImage1" mode="heightFix"></image></view></swiper-item>
+   <swiper-item><view class="item"><image src="../../static/lbt3.jpg" class="itemImage1" mode="heightFix"></image></view></swiper-item>
 </swiper>
 <view class="searchBody">  
 <van-search

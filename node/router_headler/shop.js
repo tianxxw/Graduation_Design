@@ -10,7 +10,7 @@ exports.shop1 = (req,res)=>{
   // 商品id：commodity_id
   const sql1 = 'select * from user where session_key = ?'
   //sql1查用户id  result1.id
-  const sql2 = 'select * from shop_good inner join shop on shop.id=shop_good.shop_cart_id inner join commodity on commodity.commodity_id=shop_good.good_id where commodity_id = ?'
+  const sql2 = 'select * from shop inner join shop_good on shop.id=shop_good.shop_cart_id inner join commodity on commodity.commodity_id=shop_good.good_id where commodity_id = ?'
   //sql2查用户购物车中是否有该商品,
   // 没有走sql3->sql4->sql5
   // 有就 走 sql6
@@ -21,7 +21,7 @@ exports.shop1 = (req,res)=>{
   //sql4查购物车id
   const sql5 = 'insert into shop_good value(?,?,?,?,?)'
   //sql5向shop_good插入数据
-  const sql6 = 'update shop_good inner join shop on shop_cart_id = shop.id set number = ?, price = ? where shop_cart_id = ?'
+  const sql6 = 'update shop_good inner join shop on shop_cart_id = shop.id set number = ?, price = ? where shop_good.id = ?'
   //更新购物车信息
   db.query(sql1,JSON.parse(req.body.session_key),(err1,result1)=>{
     if(err1) {
@@ -39,6 +39,7 @@ exports.shop1 = (req,res)=>{
         return res.cc(err2)
       }
       if(result2.length == 0) {
+        console.log(2);
         db.query(sql21,result1[0].id,(err21,result21)=>{
           if(err21) {
             return res.cc(err21)
@@ -71,15 +72,17 @@ exports.shop1 = (req,res)=>{
         })
       }
       else {
+        console.log(3);
         // console.log('result2:'+ result2[0].number)
         // console.log(JSON.stringify(result2));
+        console.log(result2[0].id);
         let count = result2
         // console.log(count[count.length - 1].shop_cart_id);
         // console.log(count[count.length - 1].number);
         // console.log(count[count.length -1].shop_cart_id);
         // console.log(parseFloat((count[count.length -1].price +req.body.commodity_price).toFixed(1)));
         // console.log(req.body);
-        db.query(sql6,[count[count.length - 1].number + req.body.num,parseFloat((count[count.length -1].price +req.body.commodity_price).toFixed(1)),count[count.length -1].shop_cart_id],(err6,result6)=>{
+        db.query(sql6,[count[count.length - 1].number + req.body.num,parseFloat((count[count.length -1].price +req.body.commodity_price).toFixed(1)),count[count.length -1].id],(err6,result6)=>{
           if(err6) {
             return res.cc(err6)
           }
@@ -133,6 +136,7 @@ exports.shop3 = (req,res)=>{
   console.log(req.body);
   const sql1 = 'update shop_good set number = ?, price = ? where id = ?'
   db.query(sql1,[req.body.number,parseFloat((req.body.number * req.body.price).toFixed(1)),req.body.id],(err1,result1)=>{
+    console.log(result1)
     if(err1) {
       return res.cc(err1)
     }

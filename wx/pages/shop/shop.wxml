@@ -4,7 +4,7 @@
     <view wx:if="{{load1}}" class="h1" bindtap="check1">管理</view>
     <view wx:else class="h2">
       <view class="h1_right">
-        <view>批量删除</view>
+        <view bindtap="deleteGood" >批量删除</view>
         <view bindtap="check2" class="complete">完成</view>
       </view>
     </view>

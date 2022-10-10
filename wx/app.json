@@ -6,7 +6,10 @@
     "pages/search/search",
     "pages/login/login",
     "pages/order/order",
-    "pages/info/info"
+    "pages/info/info",
+    "pages/jump/jump",
+    "pages/detail/detail",
+    "pages/updataInfo/updataInfo"
   ],
   "window":{
     "backgroundTextStyle":"dark",
@@ -47,5 +50,6 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示" 
     }
   },
-  "lazyCodeLoading": "requiredComponents"
+  "lazyCodeLoading": "requiredComponents",
+  "requiredPrivateInfos": ["getLocation", "chooseLocation", "chooseAddress","choosePoi"]
 }

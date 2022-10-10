@@ -1,0 +1,15 @@
+/* pages/jump/jump.wxss */
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.icon-box-img {
+  margin-top: -150rpx;
+  margin-bottom: 50rpx;
+}
+.text {
+  height: 100rpx;
+  line-height: 100rpx;
+}

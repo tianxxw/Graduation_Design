@@ -1,0 +1,51 @@
+/* pages/updataInfo/updataInfo.wxss */
+#body {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  height: 100vh;
+  background-color: rgba(236,236,236);
+}
+#body > view {
+  height: 100rpx;
+  line-height: 100rpx;
+  background-color: white;
+  padding: 0 20rpx;
+  border-bottom: 1px solid rgba(236,236,236);
+  display: flex;
+  justify-content: space-between;
+}
+#body > view view:first-child {
+  color: black;
+}
+#body > view view:last-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  overflow: hidden;
+}
+#body > view view:last-child {
+  display: block;
+}
+#body > view view:last-child span:last-child{
+  margin-left: 20rpx;
+  color: rgba(210,210,210);
+  font-size: 40rpx;
+  flex: 1;
+}
+#body .image {
+  height: 160rpx;
+  line-height: 160rpx;
+  display: flex;
+  justify-content: space-between;
+}
+#body .avatar {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+#image{
+  margin-top: 10rpx;
+  display: block;
+  height: 140rpx;
+  width: 140rpx ;
+
+}

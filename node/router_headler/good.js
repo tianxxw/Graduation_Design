@@ -53,5 +53,14 @@ exports.good5 = async (req,res)=>{
       message:'商品添加成功'
    })
 }
+exports.search = async (req,res)=>{
+   console.log(req.body);
+   const sql = 'select * from commodity where commodity_name like ? limit 0,?'
+   const data = await getinfo(sql,['%'+req.body.name+'%',req.body.page],res)
+   res.send({
+      message:'添加搜索成功',
+      data
+   })
+}
 
 

@@ -27,18 +27,14 @@ function deletegood(data,res) {
 
 function getinfo(sql,info,res,resSend = false) {
   return new Promise((resolve,reject)=>{
-    console.log(info);
     db.query(sql,info,(err,result)=>{
-      console.log(result);
      if(err) {
        return res.cc(err)
      }
      if(result.length == 0) {
        return res.cc(err)
      }
-     console.log(resSend);
      if(resSend) {
-      console.log(result);
       res.send({
         status:200,
         message:'success',
@@ -83,17 +79,13 @@ function resultSort(result,res) {
       delete item.commodity_name
       delete item.commodity_price
       delete item.commodity_imgurl
-      console.log(i);
       if(i == -1) {
         item.good_id.push(k)
         data = [...data,item]
         arr = [...arr,item.order_number]
-        // console.log(arr);
       }else {
-        console.log(2);
         for(let j =0;j<data.length;j++) {
           if(data[j].order_number==item.order_number) {
-            console.log(3);
             data[j].good_id.push(k)
           }
         }

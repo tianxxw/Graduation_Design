@@ -54,12 +54,27 @@ import { Delete,Edit,Search,Plus } from '@element-plus/icons-vue'
    created() {
     // this.goGood()
     // this.head.authorization = window.sessionStorage.getItem('token')
+    
    },
    mounted() {
+    let contain = this.$refs.body
+      let viewHeight = document.documentElement.clientHeight
+      console.log(viewHeight-220);
+      let height = parseInt((viewHeight - 180)/75)
+      this.pageSize = height
     this.goGood()
+    window.addEventListener('resize',this.resize)
     this.head.authorization = window.sessionStorage.getItem('token')
+    
    },
    methods:{
+    async resize() {
+      let contain = this.$refs.body
+      let viewHeight = document.documentElement.clientHeight
+      console.log(viewHeight-220);
+      let height = parseInt((viewHeight - 180)/75)
+      this.pageSize = height
+    },
     async goGood(){
      const arr = await this.$http({
       method:'get',
@@ -199,8 +214,8 @@ import { Delete,Edit,Search,Plus } from '@element-plus/icons-vue'
  }
  </script>
 <template>
- <div>
-  <el-table :data="goods.slice((currentPage-1)*pageSize,currentPage*pageSize)" border>
+ <div ref="body">
+  <el-table  :data="goods.slice((currentPage-1)*pageSize,currentPage*pageSize)" border>
    <el-table-column prop="commodity_id" label="Id" width="80" />
    <el-table-column prop="commodity_imgurl" label="图片" width="80">
     <template #default="scope">

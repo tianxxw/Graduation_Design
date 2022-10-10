@@ -16,7 +16,22 @@
     created() {
      this.getOrder()
     },
+    mounted() {
+      let contain = this.$refs.body
+      let viewHeight = document.documentElement.clientHeight
+      console.log(viewHeight-220);
+      let height = parseInt((viewHeight - 180)/75)
+      this.pageSize = height
+      window.addEventListener('resize',this.resize)
+    },
     methods:{
+      async resize() {
+      let contain = this.$refs.body
+      let viewHeight = document.documentElement.clientHeight
+      console.log(viewHeight-220);
+      let height = parseInt((viewHeight - 180)/75)
+      this.pageSize = height
+    },
      async getOrder() {
        const data = await this.$http({
          method:'get',

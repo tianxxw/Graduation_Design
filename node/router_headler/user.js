@@ -10,7 +10,7 @@ const db = require('../db/index')
    //导入数据库操作模块
 exports.login = (req, res) => {
       console.log(req.body);
-       const sql0 = `select avatar,name,id,login_num from user where open_id = ?`
+       const sql0 = `select id,avatar,name,id,login_num,sex from user where open_id = ?`
        const sql1 = `insert into user value(?,?,?,?,?,?,?)`
        const sql2 = 'update user set session_key = ?,login_num = ? where id = ?'
        const code = req.body.code

@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
-  background-color: rgba(237,238,230);
+  background-color: rgba(245,245,245);
 }
 .van-icon {
   margin: 20rpx;
@@ -11,7 +11,7 @@
 #header {
   height: 100rpx;
   margin: 20rpx;
-  border-radius: 5px;
+  border-radius: 5rpx;
   background-color: white;
 }
 #header > view {
@@ -19,33 +19,98 @@
   justify-content: left;
 }
 #header > view > view {
-  font-size: 44rpx;
+  font-size: 36rpx;
   line-height: 100rpx;
 }
-#info_content {
+#info {
   flex: 1;
-  background-color: green;
 }
-#info_content view {
-  height: 10px;
-  background-color: red;
+#info_content {
+  margin: 20rpx;
+  border-radius: 5rpx;
+  background-color: white;
+  overflow: hidden;
+}
+#info_content > view {
   display: flex;
-  justify-content: space-around;
+  justify-content: left;
 }
-#footer {
-  height: 200rpx;
-  background-color: palevioletred;
+#info_content > .image {
+  margin: 20rpx;
+  border-radius: 5rpx;
+} 
+#info_content > .info_info > .image > image {
+  border-radius: 5rpx;
+  width: 250rpx;
+  height: 250rpx;
+} 
+#info_content .wenzi {
+  margin: 20rpx;
+  height: 40rpx;
+  display: flex;
+  justify-content: space-between;
+}
+#info_content .wenzi view{
+  font-size: 30rpx;
+  line-height: 40rpx;
+}
+#info_content .red view:last-child{
+  color: red;
+}
+#info_content .info_info {
+  display: flex;
+  height: 250rpx;
+  margin: 10rpx 20rpx 30rpx;
+  justify-content: space-around;
+} 
+#info_content .info_info > .hz {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+#info_content .info_info > .hz >view{
+  margin: 10rpx 20rpx;
+  font-size: 30rpx;
+  line-height: 40rpx;
+} 
+#info_content > view >view {
+  font-size: 44rpx;
+  line-height: 100rpx;
 }
 .image{
   display: block;
   width: 48%;
 }
-.image image {
 
-  width: 300rpx;
-  height: 300rpx;
-}
 .image .hz {
   display: block;
   width: 50%;
+}
+#info_content view .second_title {
+  font-size: 36rpx;
+}
+#footer {
+  height: 120rpx;
+  display: flex;
+  background-color: white;
+}
+#footer .right{
+  width: 1rpx;
+}
+#footer .left {
+  flex: 1;
+  display: flex;
+  line-height: 120rpx;
+  justify-content: right;
+}
+#footer .left view:last-child {
+  color: white;
+  width: 250rpx;
+  text-align: center;
+  background-color: rgba(238,10,36);
+}
+#footer .left view:first-child {
+ flex: 1;
+ text-align: right;
+ margin-right: 20rpx;
 }

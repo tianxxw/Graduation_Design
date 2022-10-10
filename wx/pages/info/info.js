@@ -1,11 +1,18 @@
 // pages/info/info.js
+var app = getApp()
+const url = app.globalData.httpurl;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    arr:[]
+    list:[],
+    info:[],
+    price:'',
+    state:0,
+    xsprice:'',
+    position:'选择收货地址'
   },
 
   /**
@@ -20,21 +27,82 @@ Page({
         console.log(data)
         wx.nextTick(()=>{
           this.setData({
-            arr:data.data
+            list:data.data,
+            price:data.price,
+            xsprice:(data.price/100).toFixed(2)
           })
         })
       })
   },
   getPosition() {
-     console.log(1);
-     wx.choosePoi({
-       success:(res)=>{
-          console.log(res);
-       },
-       fail:(res)=>{
-          console.log(res);
-       }
-     })
+     let vm = this
+     wx.chooseAddress({
+      success: (res)=> {
+        console.log(res);
+        let pst = (res.provinceName== undefined ? '': res.provinceName) + ' ' + (res.cityName == undefined ? '' : res.cityName) + ' '+ (res.countyName == undefined ? '' : res.countyName) + ' ' + (res.streetName == undefined ? '' : res.streetName)
+         vm.setData({
+           info:res,
+           position:pst
+         })
+      },fail:(res)=>{
+        console.log(res);
+      }
+    })
+  },
+  getOrder() {
+    // console.log(this.data.info);
+    let vm = this
+    if(this.data.info.length != 0) {
+      wx.showModal({
+        title: '提示',
+        content: '你确认下单吗',
+        success (res) {
+          if (res.confirm) {
+            vm.setData({
+              state:1
+            })
+            vm.postInfo()
+          } else if (res.cancel) {
+            vm.postInfo()
+          }
+        }
+      })
+    }else {
+      wx.showToast({
+        title:'请选择收货地址',
+        icon:'error',
+        duration:2000
+      })
+    }
+  },
+  postInfo() {
+    wx.getStorage({
+      key:'session_key',
+      success:(res)=>{
+        wx.request({
+          url:url+ '/api/postOrder',
+          method:'POST',
+          data:{
+             info:this.data.info,
+             list:this.data.list,
+             state:this.data.state,
+             allprice:this.data.xsprice,
+             session_key:res.data
+          },
+          success:(res)=>{
+            if(this.data.state == 0) {
+              wx.reLaunch({
+                url: '/pages/home/home'
+              })
+            }else {
+              wx.reLaunch({
+                url: '/pages/jump/jump'
+              })
+            }
+          }
+        })
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

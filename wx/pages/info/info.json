@@ -1,13 +1,5 @@
 {
   "usingComponents": {
     "van-icon": "@vant/weapp/icon/index"
-  },
-  "window":{
-    "backgroundTextStyle":"dark",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "饮品",
-    "navigationBarTextStyle":"black",
-    "enablePullDownRefresh": false,
-    "onReachBottomDistance": 20
   }
 }

@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "van-search": "@vant/weapp/search/index"
+  },
   "navigationBarTitleText": "搜索",
   "navigationBarTextStyle":"black",
   "enablePullDownRefresh": true,
